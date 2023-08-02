@@ -1,14 +1,14 @@
 <template>
-  <div class="d-flex container mw-100">
-    <div class="container">
+  <div class="d-flex container mw-100 main">
+    <div class="container left-container">
       <b-img
-        src="https://picsum.photos/1024/400/?image=43"
+        src="https://picsum.photos/1024/400/?image=2"
         fluid
         alt="Responsive image"
       ></b-img>
     </div>
-    <div class="container">
-      <h3>Login</h3>
+    <div class="container right-container">
+      <h3>LogIn X</h3>
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <b-form-group
           id="input-group-1"
@@ -71,7 +71,7 @@ export default {
         });
         if (findUser) {
           alert("Success!");
-          this.$router.push("signup");
+          this.$router.push("about");
         }
         if (!findUser) {
           alert("Please signup first");
@@ -97,4 +97,66 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style>
+
+.main {
+  height: 80vh;
+  position: absolute;
+  top: 10%;
+}
+.left-container,
+.right-container {
+  height: 70vh;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.right-container h3 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 3rem !important;
+  font-style: oblique;
+}
+.right-container div {
+  text-align: start;
+}
+.right-container button{
+  width: 10vw;
+}
+.right-container form{
+  width: 30vw;
+}
+.left-container img {
+  height: 100%;
+  border-radius: 10px;
+}
+@media only screen and (max-width:768px){
+  body{
+   background-image: linear-gradient(270deg,rgb(5, 5, 78),black);
+  }
+  .main{
+    color: azure;
+  }
+  .left-container{
+    display: none;
+    color: azure;
+
+  }
+  .right-container form{
+    width: 70%;
+  }
+  .right-container button{
+    width:50%;
+    background-image: linear-gradient(70deg,rgb(20, 20, 80), rgb(7, 7, 37));
+  }
+}
+@media only screen  and (max-width:375px){
+  .right-container form{
+    width: 100%;
+  }
+}
+</style>

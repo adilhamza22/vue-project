@@ -1,15 +1,15 @@
 /* eslint-disable */
 <template>
-  <div class="d-flex container mw-100">
-    <div class="container">
+  <div class="d-flex container mw-100 main">
+    <div class="container left-container">
       <b-img
-        src="https://picsum.photos/1024/400/?image=43"
+        src="https://picsum.photos/1024/400/?image=2"
         fluid
         alt="Responsive image"
       ></b-img>
     </div>
-    <div class="container">
-      <h3>SignUp</h3>
+    <div class="container right-container">
+      <h3>SignUp for X</h3>
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <b-form-group
           id="input-group-1"
@@ -92,6 +92,7 @@ export default {
         authUser.push(user);
         localStorage.setItem("authUser", JSON.stringify(authUser));
       }
+      this.$router.push("signin");
       console.log(authUser);
       // this.form[input] = value
 
@@ -117,4 +118,18 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+<style>
+.main {
+  height: 55vh;
+  position: absolute;
+  top: 20%;
+}
+.left-container,
+.right-container {
+  height: 50vh;
+}
+.left-container img {
+  height: 100%;
+  border-radius: 10px;
+}
+</style>
