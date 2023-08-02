@@ -71,7 +71,7 @@ export default {
         });
         if (findUser) {
           alert("Success!");
-          this.$router.push("about");
+          this.$router.push("dashboard");
         }
         if (!findUser) {
           alert("Please signup first");
