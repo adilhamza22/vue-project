@@ -98,7 +98,6 @@ export default {
 };
 </script>
 <style>
-
 .main {
   height: 80vh;
   position: absolute;
@@ -124,38 +123,37 @@ export default {
 .right-container div {
   text-align: start;
 }
-.right-container button{
+.right-container button {
   width: 10vw;
 }
-.right-container form{
+.right-container form {
   width: 30vw;
 }
 .left-container img {
   height: 100%;
   border-radius: 10px;
 }
-@media only screen and (max-width:768px){
-  body{
-   background-image: linear-gradient(270deg,rgb(5, 5, 78),black);
+@media only screen and (max-width: 768px) {
+  body {
+    background-image: linear-gradient(270deg, rgb(5, 5, 78), black);
   }
-  .main{
+  .main {
     color: azure;
   }
-  .left-container{
+  .left-container {
     display: none;
     color: azure;
-
   }
-  .right-container form{
+  .right-container form {
     width: 70%;
   }
-  .right-container button{
-    width:50%;
-    background-image: linear-gradient(70deg,rgb(20, 20, 80), rgb(7, 7, 37));
+  .right-container button {
+    width: 50%;
+    background-image: linear-gradient(70deg, rgb(20, 20, 80), rgb(7, 7, 37));
   }
 }
-@media only screen  and (max-width:375px){
-  .right-container form{
+@media only screen and (max-width: 375px) {
+  .right-container form {
     width: 100%;
   }
 }
