@@ -1,15 +1,17 @@
 /* eslint-disable */
 <template>
+  
   <div class="d-flex container mw-100 main">
+    
     <div class="container left-container">
       <b-img
-        src="https://picsum.photos/1024/400/?image=2"
+        src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=806&q=80"
         fluid
         alt="Responsive image"
       ></b-img>
     </div>
     <div class="container right-container">
-      <h3>SignUp for X</h3>
+      <h3>SignUp</h3>
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <b-form-group
           id="input-group-1"
@@ -57,6 +59,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -118,18 +121,66 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .main {
-  height: 55vh;
+  height: 80vh;
   position: absolute;
-  top: 20%;
+  top: 10%;
 }
 .left-container,
 .right-container {
-  height: 50vh;
+  height: 70vh;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.right-container h3 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 3rem !important;
+  font-style: oblique;
+}
+.right-container div {
+  text-align: start;
+}
+.right-container button {
+  width: 10vw;
+  background-color:#2a343f;
+
+}
+.right-container form {
+  width: 30vw;
 }
 .left-container img {
   height: 100%;
   border-radius: 10px;
+}
+@media only screen and (max-width: 768px) {
+  body {
+    background-image: linear-gradient(70deg, rgb(20, 20, 80), rgb(7, 7, 37));
+  }
+  .main {
+    color: black;
+  }
+  .left-container {
+    display: none;
+    color: black;
+  }
+  .right-container form {
+    width: 70%;
+  }
+  .right-container button {
+    width: 50%;
+    /* background-image: linear-gradient(70deg, rgb(20, 20, 80), rgb(7, 7, 37)); */
+  }
+}
+@media only screen and (max-width: 375px) {
+  .right-container form {
+    width: 100%;
+  }
 }
 </style>

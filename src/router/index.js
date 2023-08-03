@@ -4,6 +4,8 @@ import HomeView from "../views/HomeView.vue";
 import SignUp from "@/components/SignUp.vue";
 import SignIn from "@/components/SignIn.vue";
 import DashBoard from "@/components/DashBoard.vue";
+import UserProfile from "@/components/UserProfile.vue";
+import Users from "@/components/UsersData.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -35,6 +37,17 @@ const routes = [
     path: "/dashboard",
     name: "DashBoard",
     component: DashBoard,
+    children: [
+      {
+        // UserProfile will be rendered inside User's <router-view>
+        path: "/profile",
+        component: UserProfile,
+      },
+      {
+        path: "/users",
+        component: Users,
+      },
+    ],
   },
 ];
 

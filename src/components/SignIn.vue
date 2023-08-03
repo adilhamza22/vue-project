@@ -2,13 +2,13 @@
   <div class="d-flex container mw-100 main">
     <div class="container left-container">
       <b-img
-        src="https://picsum.photos/1024/400/?image=2"
+        src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=806&q=80"
         fluid
         alt="Responsive image"
       ></b-img>
     </div>
     <div class="container right-container">
-      <h3>LogIn X</h3>
+      <h3>LogIn</h3>
       <b-form @submit="onSubmit" @reset="onReset" v-if="show">
         <b-form-group
           id="input-group-1"
@@ -32,6 +32,7 @@
         >
           <b-form-input
             id="input-2"
+            type="password"
             v-model="form.password"
             placeholder="Enter Password"
             required
@@ -62,6 +63,7 @@ export default {
       alert(JSON.stringify(this.form));
 
       let authUser = JSON.parse(localStorage.getItem("authUser"));
+      let clickUser;
       alert(JSON.stringify(authUser));
       if (authUser) {
         let findUser = authUser.find((item) => {
@@ -71,6 +73,12 @@ export default {
         });
         if (findUser) {
           alert("Success!");
+          clickUser = {
+            email: findUser.email,
+            name: findUser.name,
+            password: findUser.password,
+          };
+          localStorage.setItem("clickUser", JSON.stringify(clickUser));
           this.$router.push("dashboard");
         }
         if (!findUser) {
@@ -97,12 +105,14 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .main {
   height: 80vh;
   position: absolute;
   top: 10%;
+  color: black;
 }
+
 .left-container,
 .right-container {
   height: 70vh;
@@ -113,6 +123,7 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  color: black;
 }
 .right-container h3 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -123,8 +134,14 @@ export default {
 .right-container div {
   text-align: start;
 }
+.right-container h3{
+  color: #2C3E50;
+}
 .right-container button {
   width: 10vw;
+  background-color:#2a343f;
+  
+
 }
 .right-container form {
   width: 30vw;
@@ -134,22 +151,19 @@ export default {
   border-radius: 10px;
 }
 @media only screen and (max-width: 768px) {
-  body {
-    background-image: linear-gradient(270deg, rgb(5, 5, 78), black);
-  }
   .main {
-    color: azure;
+    color: black;
   }
   .left-container {
     display: none;
-    color: azure;
+    color: black;
   }
   .right-container form {
     width: 70%;
   }
   .right-container button {
     width: 50%;
-    background-image: linear-gradient(70deg, rgb(20, 20, 80), rgb(7, 7, 37));
+    /* background-image: linear-gradient(70deg, rgb(20, 20, 80), rgb(7, 7, 37)); */
   }
 }
 @media only screen and (max-width: 375px) {

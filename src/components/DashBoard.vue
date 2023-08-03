@@ -1,23 +1,32 @@
-<script>
-// import { NavBar } from "@/components/NavBar.vue";
-</script>
 <template>
-  <div id="home" class="container mw-100">
-    <!-- <h1>HomePage</h1> -->
-    <div class="left-main container">
-      <nav>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
-      </nav>
-      <router-view />
-    </div>
-    <div class="right-main container">
-      <table></table>
+  <div>
+    <NavBarBrand />
+    <div id="home" class="container mw-100">
+      <div class="left-main container">
+        <nav>
+          <router-link to="/profile"
+          class="d-flex justify-content-between">Visit Profile <i class="bi bi-person-square"></i
+          ></router-link>
+          <router-link to="/users" class="d-flex justify-content-between">Display Users <i class="bi bi-people"></i></router-link>
+        </nav>
+      </div>
+      <div class="right-main container">
+        <img class="responsive" src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
 <script>
+import UserProfile from "@/components/UserProfile.vue";
+import NavBarBrand from "@/components/NavBarBrand.vue";
 export default {
+  name: "DashBoard",
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    UserProfile,
+    NavBarBrand,
+  },
   data() {
     return {};
   },
@@ -29,26 +38,51 @@ export default {
   flex-direction: row;
   width: 100%;
   padding-left: 0;
-  height: 80vh;
+  padding-right: 0;
+  height: 100vh;
+  color: rgb(2, 11, 43);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 .left-main {
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(270deg, rgb(63, 63, 122), black);
+  /* background-image: linear-gradient(270deg, rgb(63, 63, 122), black); */
   width: 30%;
-  border-radius: 10px;
+  border-radius: 1px;
+
+  /* background-color: #14858575; */
+  background-image: linear-gradient(
+    270deg,
+    rgb(14, 14, 65, 0.9),
+    rgb(19, 34, 66, 0.9)
+  );
 }
 .left-main nav {
   display: flex;
   flex-direction: column;
-  color: azure;
+  color: black;
 }
 .left-main nav a {
-  color: azure;
+  /* color: rgb(81, 82, 82); */
+  color: white;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 1.5rem;
-  border-bottom: 1px solid snow;
+  font-size: 1rem;
+  border-bottom: 1px solid white;
   padding: 10px 0;
+  margin: 10px 0;
+}
+.right-main {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.right-main img{
+  width: 100%;
+  height: 100%;
 }
 </style>
