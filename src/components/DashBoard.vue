@@ -11,7 +11,7 @@
         </nav>
       </div>
       <div class="right-main container">
-        <img class="responsive" src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80">
+        <!-- <img class="responsive" src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80"> -->
         <router-view />
       </div>
     </div>
@@ -81,8 +81,8 @@ export default {
   justify-content: center;
   padding: 0;
 }
-.right-main img{
+/* .right-main img{
   width: 100%;
   height: 100%;
-}
+} */
 </style>
