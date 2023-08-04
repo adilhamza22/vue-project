@@ -4,10 +4,15 @@
     <div id="home" class="container mw-100">
       <div class="left-main container">
         <nav>
-          <router-link to="/profile"
-          class="d-flex justify-content-between">Visit Profile <i class="bi bi-person-square"></i
+          <router-link to="/profile" class="d-flex justify-content-between"
+            >Visit Profile <i class="bi bi-person-square"></i
           ></router-link>
-          <router-link to="/users" class="d-flex justify-content-between">Display Users <i class="bi bi-people"></i></router-link>
+          <router-link to="/users" class="d-flex justify-content-between">
+            Display Users <i class="bi bi-people"></i
+          ></router-link>
+          <router-link to="/edit" class="d-flex justify-content-between">
+            Edit Profile <i class="bi bi-person-gear"></i
+          ></router-link>
         </nav>
       </div>
       <div class="right-main container">
@@ -62,16 +67,16 @@ export default {
   display: flex;
   flex-direction: column;
   color: black;
+  padding: 0;
 }
 .left-main nav a {
   /* color: rgb(81, 82, 82); */
   color: white;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1rem;
   border-bottom: 1px solid white;
   padding: 10px 0;
   margin: 10px 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .right-main {
   overflow-y: scroll;

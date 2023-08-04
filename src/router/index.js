@@ -1,11 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// eslint-disable-next-line no-unused-vars
 import HomeView from "../views/HomeView.vue";
 import SignUp from "@/components/SignUp.vue";
 import SignIn from "@/components/SignIn.vue";
 import DashBoard from "@/components/DashBoard.vue";
 import UserProfile from "@/components/UserProfile.vue";
 import Users from "@/components/UsersData.vue";
+import EditProfile from "@/components/EditProfile.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -46,6 +48,10 @@ const routes = [
       {
         path: "/users",
         component: Users,
+      },
+      {
+        path: "/edit",
+        component: EditProfile,
       },
     ],
   },

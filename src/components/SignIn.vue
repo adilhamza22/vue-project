@@ -9,7 +9,7 @@
     </div>
     <div class="container right-container">
       <h3>LogIn</h3>
-      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-form @submit="onSubmit" v-if="show">
         <b-form-group
           id="input-group-1"
           label="Email address:"
@@ -40,7 +40,9 @@
         </b-form-group>
 
         <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button>
+        <b-button type="reset" variant="danger" @click="onSignUp"
+          >SignUp</b-button
+        >
       </b-form>
     </div>
   </div>
@@ -60,11 +62,11 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      alert(JSON.stringify(this.form));
+      // alert(JSON.stringify(this.form));
 
       let authUser = JSON.parse(localStorage.getItem("authUser"));
       let clickUser;
-      alert(JSON.stringify(authUser));
+      // alert(JSON.stringify(authUser));
       if (authUser) {
         let findUser = authUser.find((item) => {
           return (
@@ -89,7 +91,7 @@ export default {
         alert("Signup first");
       }
     },
-    onReset(event) {
+    onSignUp(event) {
       event.preventDefault();
       // Reset our form values
       this.form.email = "";
@@ -97,10 +99,12 @@ export default {
       this.form.food = null;
       this.form.checked = [];
       // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
+      // this.show = false;
+      // this.$nextTick(() => {
+      //   this.show = true;
+      // });
+      // this.$router.push("/signup");
+      window.location.href = "signup";
     },
   },
 };
@@ -134,14 +138,12 @@ export default {
 .right-container div {
   text-align: start;
 }
-.right-container h3{
-  color: #2C3E50;
+.right-container h3 {
+  color: #2c3e50;
 }
 .right-container button {
   width: 10vw;
-  background-color:#2a343f;
-  
-
+  background-color: #2a343f;
 }
 .right-container form {
   width: 30vw;

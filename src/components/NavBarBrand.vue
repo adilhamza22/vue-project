@@ -34,10 +34,12 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template #button-content>
-              <em>User</em>
+              <em><i class="bi bi-person-square logout-menu-avatar"></i></em>
             </template>
             <!-- <b-dropdown-item href="#">Profile</b-dropdown-item> -->
-            <b-dropdown-item @click="logOut()">Sign Out</b-dropdown-item>
+            <b-dropdown-item @click="logOut()" id="sign-out">
+              Sign Out <i class="bi bi-box-arrow-left"></i
+            ></b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -60,4 +62,13 @@ export default {
   },
 };
 </script>
-<style lang=""></style>
+
+<style>
+#sign-out {
+  display: flex;
+  justify-content: space-between;
+}
+.logout-menu-avatar {
+  /* height: 20px; */
+}
+</style>

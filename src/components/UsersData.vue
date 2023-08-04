@@ -1,13 +1,12 @@
 <template>
   <div class="main container">
-    <nav></nav>
-    <table class="table table-dark responsive">
+    <table class="table table-primary user-table">
       <tr>
-        <td>Id</td>
-        <td>Name</td>
-        <td>Username</td>
-        <td>Email</td>
-        <td>More</td>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>More</th>
       </tr>
       <MoreDetails
         v-if="modalOpen"
@@ -77,3 +76,23 @@ export default {
   },
 };
 </script>
+<style>
+.right-main {
+  position: relative;
+  /* height: 90vh; */
+}
+.main {
+  position: absolute;
+  top: 0;
+}
+.user-table {
+  margin: 1% 0;
+  position: absolute;
+  top: 0 !important;
+  background-color: #ffffff !important;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.user-table button {
+  /* background-image: linear-gradient(270deg, rgb(63, 63, 122,0.5), black); */
+}
+</style>

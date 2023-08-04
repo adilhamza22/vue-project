@@ -1,9 +1,27 @@
 <template>
+  <div class="card profile-card">
+    <img src="../assets/avatar.jpeg" class="card-img-top" alt="Person Image" />
+    <div class="card-body">
+      <p class="card-text user-card-data">
+        <h5 class="mb-1">{{ name }}</h5>
+                  <p class="mb-2 pb-1" style="color: #2b2a2a">
+                    <Sub>Senior Journalist</Sub>
+                  </p>
+                  <p class="mb-0 mx-4">
+                    <sub><strong>Email: </strong>
+                        <i><b>{{ email }}</b></i>
+                      </sub>
+                  </p>
+       </p>
+    </div>
+    <div class="card-footer"><button type="button" class="btn btn-primary btn-sm mx-1" @click="showUsers()">Show Users</button>
+<button type="button" class="btn btn-secondary btn-sm mx-1" @click="editProfile()" >Edit Profile</button></div>
+  </div>
   <!-- <div id="user-profile" @load="this.getData()">
     <h2>{{ name }}</h2>
     <p >{{ message }}</p>
   </div> -->
-  <div style="background-image: linear-gradient(270deg, rgb(14, 14, 65,0.9), rgb(19, 34, 66,0.9)); width: 80%" class="">
+  <!-- <div style = "background-image: linear-gradient(270deg, rgb(14, 14, 65,0.9), rgb(19, 34, 66,0.9)); width: 80%" class="">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-10">
@@ -27,10 +45,10 @@
                     class="d-flex justify-content-start rounded-3 p-2 mb-2"
                     style="background-color: #efefef"
                   >
-                    <div>
+                  <div>
                       <p class="small text-muted mb-1">Articles</p>
                       <p class="mb-0">41</p>
-                    </div>
+                    </div> 
                     <div class="px-3">
                       <p class="small text-muted mb-1">Followers</p>
                       <p class="mb-0">976</p>
@@ -41,7 +59,9 @@
                     </div>
                     <div>
                       <p class="small text-muted mb-1">Email</p>
-                      <p class="mb-0 mx-4">{{ email }}</p>
+                      <p class="mb-0 mx-4">
+                        <i>{{ email }}</i>
+                      </p>
                     </div>
                   </div>
                   <div class="d-flex pt-1">
@@ -62,7 +82,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -95,16 +115,34 @@ export default {
       this.name = currname;
       this.email = email;
     },
+    showUsers(){
+      window.location.href = "users";
+    },
+    editProfile(){
+      window.location.href = "edit";
+      
+    }
   },
 };
 </script>
 
 <style scoped>
+.right-main{
+  bottom: 5%;
+}
+.profile-card{
+  width: 20rem;
+    position: absolute;
+    top: 3%;
+}
 #user-profile {
   color: black;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
   font-weight: lighter;
+}
+.user-card-data{
+  border-top: 1px solid rgb(122, 226, 191);
 }
 /* #card-btn{
   background-image: linear-gradient(270deg, rgb(14, 14, 65,0.9), rgb(19, 34, 66,0.9));

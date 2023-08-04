@@ -15,6 +15,11 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
 
+//vue alerts
+import VueSimpleAlert from "vue-simple-alert";
+
+Vue.use(VueSimpleAlert);
+
 Vue.config.productionTip = false;
 // const dashboard = createApp(DashBoard);
 // dashboard.component("user-profile", UserProfile);

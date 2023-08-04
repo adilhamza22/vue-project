@@ -1,8 +1,6 @@
 /* eslint-disable */
 <template>
-  
   <div class="d-flex container mw-100 main">
-    
     <div class="container left-container">
       <b-img
         src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=806&q=80"
@@ -12,7 +10,7 @@
     </div>
     <div class="container right-container">
       <h3>SignUp</h3>
-      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-form @submit="onSubmit" v-if="show">
         <b-form-group
           id="input-group-1"
           label="Email address:"
@@ -52,14 +50,15 @@
         </b-form-group>
 
         <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button>
+        <b-button type="reset" variant="danger" @click="onSignIn"
+          >Login</b-button
+        >
       </b-form>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -75,14 +74,14 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       let formData = this.form;
-      alert(JSON.stringify(this.form));
+      // alert(JSON.stringify(this.form));
       // console.log(this.email);
       let user = {
         email: formData.email,
         name: formData.name,
         password: formData.password,
       };
-      alert(JSON.stringify(user));
+      // alert(JSON.stringify(user));
 
       let authUser = JSON.parse(localStorage.getItem("authUser"));
 
@@ -95,6 +94,7 @@ export default {
         authUser.push(user);
         localStorage.setItem("authUser", JSON.stringify(authUser));
       }
+      alert("SuccessFully Signed Up");
       this.$router.push("signin");
       console.log(authUser);
       // this.form[input] = value
@@ -105,18 +105,20 @@ export default {
       // storedForm[input] = value // store new value
       // this.saveStorage(storedForm) // save changes into localStorage
     },
-    onReset(event) {
+    onSignIn(event) {
       event.preventDefault();
       // Reset our form values
       this.form.email = "";
       this.form.name = "";
       this.form.food = null;
       this.form.checked = [];
+      window.location.href = "signin";
+
       // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
+      // this.show = false;
+      // this.$nextTick(() => {
+      //   this.show = true;
+      // });
     },
   },
 };
@@ -149,8 +151,7 @@ export default {
 }
 .right-container button {
   width: 10vw;
-  background-color:#2a343f;
-
+  background-color: #2a343f;
 }
 .right-container form {
   width: 30vw;
