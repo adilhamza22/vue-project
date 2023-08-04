@@ -12,77 +12,12 @@
                         <i><b>{{ email }}</b></i>
                       </sub>
                   </p>
-       </p>
+      </p>
     </div>
     <div class="card-footer"><button type="button" class="btn btn-primary btn-sm mx-1" @click="showUsers()">Show Users</button>
 <button type="button" class="btn btn-secondary btn-sm mx-1" @click="editProfile()" >Edit Profile</button></div>
   </div>
-  <!-- <div id="user-profile" @load="this.getData()">
-    <h2>{{ name }}</h2>
-    <p >{{ message }}</p>
-  </div> -->
-  <!-- <div style = "background-image: linear-gradient(270deg, rgb(14, 14, 65,0.9), rgb(19, 34, 66,0.9)); width: 80%" class="">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-10">
-          <div class="card" style="border-radius: 15px">
-            <div class="card-body p-4">
-              <div class="d-flex text-black">
-                <div class="flex-shrink-0">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                    alt="Generic placeholder image"
-                    class="img-fluid"
-                    style="width: 180px; border-radius: 10px"
-                  />
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <h5 class="mb-1">{{ name }}</h5>
-                  <p class="mb-2 pb-1" style="color: #2b2a2a">
-                    Senior Journalist
-                  </p>
-                  <div
-                    class="d-flex justify-content-start rounded-3 p-2 mb-2"
-                    style="background-color: #efefef"
-                  >
-                  <div>
-                      <p class="small text-muted mb-1">Articles</p>
-                      <p class="mb-0">41</p>
-                    </div> 
-                    <div class="px-3">
-                      <p class="small text-muted mb-1">Followers</p>
-                      <p class="mb-0">976</p>
-                    </div>
-                    <div>
-                      <p class="small text-muted mb-1">Rating</p>
-                      <p class="mb-0">8.5</p>
-                    </div>
-                    <div>
-                      <p class="small text-muted mb-1">Email</p>
-                      <p class="mb-0 mx-4">
-                        <i>{{ email }}</i>
-                      </p>
-                    </div>
-                  </div>
-                  <div class="d-flex pt-1">
-                    <button
-                      type="button"
-                      class="btn btn-outline-primary me-1 flex-grow-1 mx-2"
-                    >
-                      Account
-                    </button>
-                    <button type="button" class="btn btn-primary flex-grow-1 mx-2">
-                      Followers
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
+
 </template>
 
 <script>
