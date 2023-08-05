@@ -4,7 +4,10 @@
     <div id="home" class="container mw-100">
       <div class="left-main container">
         <nav>
-          <router-link to="/profile" class="d-flex justify-content-between"
+          <router-link
+            @click="removeOverlay()"
+            to="/profile"
+            class="d-flex justify-content-between"
             >Visit Profile <i class="bi bi-person-square"></i
           ></router-link>
           <router-link to="/users" class="d-flex justify-content-between">
@@ -16,6 +19,21 @@
         </nav>
       </div>
       <div class="right-main container">
+        <!-- <div v-show="rightContainerNotOpen">
+          <b-card
+            overlay
+            img-src="https://picsum.photos/900/250/?image=3"
+            img-alt="Card Image"
+            text-variant="white"
+            title="Image Overlay"
+            sub-title="Subtitle"
+          >
+            <b-card-text>
+              Some quick example text to build on the card and make up the bulk
+              of the card's content.
+            </b-card-text>
+          </b-card>
+        </div> -->
         <!-- <img class="responsive" src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80"> -->
 
         <router-view />
@@ -34,13 +52,16 @@ export default {
     NavBarBrand,
   },
   data() {
-    return {};
+    return {
+      rightContainerNotOpen: true,
+    };
   },
-  // methods:{
-  //   removeOverlay(){
-  //   this.$refs.children[3][0].style.display = "none";
-  //   },
-  // }
+  methods: {
+    removeOverlay() {
+      this.rightContainerNotOpen = false;
+      console.log(this.rightContainerNotOpen);
+    },
+  },
 };
 </script>
 <style scoped>
