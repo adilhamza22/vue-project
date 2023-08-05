@@ -6,7 +6,7 @@
         class="card-img-top"
         alt="Image Profile"
       />
-      <div class="card-body">
+      <div class="card-body password-card-body">
         <div class="input-group mb-3">
           <input
             type="password"
@@ -124,6 +124,9 @@ export default {
   left: 30%;
   width: 30vw;
 }
+.password-card-body input::placeholder{
+    font-size: small;
+  }
 @media only screen and (max-width:768px) {
   .right-main{
     width: 70%;
@@ -131,6 +134,9 @@ export default {
   .edit-profile {
     width: 60% !important;
     left: 20% !important;
+  }
+  .password-card-body input::placeholder{
+    font-size: x-small;
   }
 }
 @media only screen and (max-width:490px){
@@ -140,6 +146,9 @@ export default {
   .edit-profile{
     width: 90% !important;
     left: 5% !important;
+  }
+  .password-card-body input::placeholder{
+    font-size: x-small;
   }
 }
 .edit-card {
