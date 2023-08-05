@@ -17,6 +17,7 @@
       </div>
       <div class="right-main container">
         <!-- <img class="responsive" src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80"> -->
+
         <router-view />
       </div>
     </div>
@@ -35,9 +36,24 @@ export default {
   data() {
     return {};
   },
+  // methods:{
+  //   removeOverlay(){
+  //   this.$refs.children[3][0].style.display = "none";
+  //   },
+  // }
 };
 </script>
 <style scoped>
+@media only screen and (max-width: 768px) {
+  .left-main {
+    display: none !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .right-main {
+    width: 70%;
+  }
+}
 #home {
   display: flex;
   flex-direction: row;
@@ -71,12 +87,16 @@ export default {
 }
 .left-main nav a {
   /* color: rgb(81, 82, 82); */
+  align-items: center;
+
   color: white;
   font-size: 1rem;
   border-bottom: 1px solid white;
   padding: 10px 0;
   margin: 10px 0;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.left-main router-link {
 }
 .right-main {
   overflow-y: scroll;

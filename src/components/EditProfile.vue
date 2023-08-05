@@ -124,6 +124,24 @@ export default {
   left: 30%;
   width: 30vw;
 }
+@media only screen and (max-width:768px) {
+  .right-main{
+    width: 70%;
+  }
+  .edit-profile {
+    width: 60% !important;
+    left: 20% !important;
+  }
+}
+@media only screen and (max-width:490px){
+  .right-main{
+    width: 80%;
+  }
+  .edit-profile{
+    width: 90% !important;
+    left: 5% !important;
+  }
+}
 .edit-card {
   /* width: 40vw; */
   width: 100%;
