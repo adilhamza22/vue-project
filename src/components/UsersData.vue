@@ -115,6 +115,28 @@ export default {
   background-color: #ffffff !important;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+@media only screen and (max-width: 768px){
+  .right-main {
+      width: 90%!important;
+  }
+  .right-main button{
+    font-size: small;
+    padding: 5%;
+  };
+}
+.right-main th,td{
+  padding: 0.25rem!important;
+  font-size: small;
+}
+@media only screen and (max-width:425px) {
+  .right-main th,td{
+    font-size: x-small;
+  }
+  .right-main button{
+    font-size: x-small;
+    padding: 5%;
+  }
+}
 .user-table button {
   /* background-image: linear-gradient(270deg, rgb(63, 63, 122,0.5), black); */
 }
