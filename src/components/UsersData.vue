@@ -80,7 +80,6 @@ export default {
         localStorage.setItem("usersData", JSON.stringify(res.data));
         this.list = res.data;
         this.loading = false;
-
         });
       }, 3000);
 

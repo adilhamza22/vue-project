@@ -16,6 +16,12 @@
           <router-link to="/edit" class="d-flex justify-content-between">
             Edit Profile <i class="bi bi-person-gear"></i
           ></router-link>
+          <router-link to="/students" class="d-flex justify-content-between">
+            Students <i class="bi bi-person-gear"></i
+          ></router-link>
+          <router-link to="/teachers" class="d-flex justify-content-between">
+            Teachers<i class="bi bi-person-gear"></i
+          ></router-link>
         </nav>
       </div>
       <div class="right-main container">

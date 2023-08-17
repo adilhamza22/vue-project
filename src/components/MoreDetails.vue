@@ -1,8 +1,8 @@
 <template>
   <div>
-    <b-modal id="modal-1" class="modal responsive" title="Residential Details">
-      <div class="d-flex justify-content-between">
-        <div class="inner-div-modal card-title card-avatar">
+    <b-modal id="modal-1" class="modal responsive more-details-modal" title="Residential Details">
+      <div class="d-flex justify-content-around">
+        <div class="inner-div-modal card-title card-avatar" >
           <img src="../assets/avatar.jpeg" />
         </div>
 
@@ -38,12 +38,49 @@ export default {
 <style>
 #modal-1 {
   display: block;
-  width: 40%;
-  height: 70%;
+  width: 60vw;
+  height: 70vh;
   left: 32%;
   top: 15%;
   overflow-y: hidden;
 }
+#modal-1 div:first-child {
+  max-width: 100%;
+
+}
+@media only screen and (max-width:992px){
+ 
+  #modal-1 div:first-child {
+    max-width: 80%;
+  }
+}
+@media only screen and (max-width:768px){
+  #modal-1 {
+  display: block;
+  width: 60vw;
+  height: 70vh;
+  left: 20%;
+  top: 15%;
+  overflow-y: hidden;
+}
+ 
+ #modal-1 div:first-child {
+   max-width: 100%;
+ }
+}
+
+/* .more-details-modal{
+  width: 60vw;
+  height: 40vh;
+} */
+/* .more-details-modal .modal-dialog{
+  margin:0;
+  max-width: 800px !important;
+  /* max-width: 500px; 
+} */
+/* .more-details-modal .modal-content{
+  width: 55vw!important;
+} */
 .card-avatar {
   border-right: 1px solid rgb(223, 217, 217);
 }

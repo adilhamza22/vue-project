@@ -11,6 +11,8 @@
           <b-nav-item href="/users" class="responsive-nav-item">Display Users</b-nav-item>
           <b-nav-item href="/profile" class="responsive-nav-item">Profile</b-nav-item>
           <b-nav-item href="/edit"class="responsive-nav-item">Edit Profile</b-nav-item>
+          <b-nav-item href="/students"class="responsive-nav-item">View Students</b-nav-item>
+          <b-nav-item href="/teachers"class="responsive-nav-item">View Teachers</b-nav-item>
           <!-- <b-nav-item href="/about">About Us</b-nav-item> -->
         </b-navbar-nav>
 

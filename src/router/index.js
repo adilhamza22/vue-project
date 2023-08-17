@@ -8,6 +8,8 @@ import DashBoard from "@/components/DashBoard.vue";
 import UserProfile from "@/components/UserProfile.vue";
 import Users from "@/components/UsersData.vue";
 import EditProfile from "@/components/EditProfile.vue";
+import HelloWorld from "@/components/HelloWorld.vue";
+import CarouselHome from "@/components/CarouselHome.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -42,6 +44,11 @@ const routes = [
     children: [
       {
         // UserProfile will be rendered inside User's <router-view>
+        path: "/",
+        component: CarouselHome,
+      },
+      {
+        // UserProfile will be rendered inside User's <router-view>
         path: "/profile",
         component: UserProfile,
       },
@@ -52,6 +59,13 @@ const routes = [
       {
         path: "/edit",
         component: EditProfile,
+      },
+      {
+        path: "/students",
+        component: HelloWorld,
+      },{
+        path: "/teachers",
+        component: HelloWorld,
       },
     ],
   },
