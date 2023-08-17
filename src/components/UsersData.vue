@@ -1,7 +1,14 @@
 <template>
   <div class="main container">
+    <!-- <div id ="spinner-loading" v-if="loading">
+        <b-button variant="primary" disabled>
+        <b-spinner small type="grow"></b-spinner>
+        Loading...
+       </b-button>
+    </div> -->
+    
     <table class="table table-primary user-table">
-      <tr>
+      <tr v-if="!loading">
         <th>Id</th>
         <th>Name</th>
         <th>Username</th>
@@ -13,6 +20,9 @@
         @close="modalOpen = false"
         :data="this.modalData"
       />
+      <div v-if="loading">
+        <Loader />
+      </div>
       <tr v-for="item in list" v-bind:key="item.id">
         <td>{{ item.id }}</td>
         <td>{{ item.name }}</td>
@@ -41,21 +51,18 @@ import vue from "vue";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import MoreDetails from "@/components/MoreDetails.vue";
+import Loader from "./Loader.vue";
+// import { set } from "vue/types/umd";
+
 vue.use(VueAxios, axios);
 export default {
-  mounted() {
-    vue.axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
-      console.log(res.data);
-      this.data = res.data;
-      localStorage.setItem("usersData", JSON.stringify(res.data));
-      this.list = res.data;
-    });
-  },
+  
   data() {
     return {
       modalOpen: false,
       modalData: null,
       list: undefined,
+      loading:false,
       //   items: [
       //     { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
       //     { age: 21, first_name: "Larsen", last_name: "Shaw" },
@@ -64,10 +71,27 @@ export default {
       //   ],
     };
   },
+  mounted() {
+      this.loading = true;
+      setTimeout(() => {
+        vue.axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
+        console.log(res.data);
+        this.data = res.data;
+        localStorage.setItem("usersData", JSON.stringify(res.data));
+        this.list = res.data;
+        this.loading = false;
+
+        });
+      }, 3000);
+
+    
+    
+  },
   components: {
     // eslint-disable-next-line vue/no-unused-components
     MoreDetails,
-  },
+    Loader
+},
   methods: {
     moreDetails(data) {
       this.modalOpen = true;
