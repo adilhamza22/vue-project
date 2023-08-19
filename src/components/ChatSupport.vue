@@ -1,12 +1,12 @@
 <template>
     <div class="main-container">
         <h1>CHAT X</h1>
-        <span v-if="connectionReady">ConnectionReady</span>
+        <span v-if="connectionReady">Online</span>
         <span v-if="connectionError">ConnectionError</span>
 
-        <div class="messages-container">
-            <div class="sender-msg-container row" v-for="m in messages.filter(item => item.sid == 0)" > <div class="sender-msg">{{ m.msg }} </div> </div>
-            <div class="bot-msg-container row" v-for="m in messages.filter(item => item.sid == 1)">  <div class="bot-msg">{{ m.msg }} </div> </div>
+        <div class="messages-container" id ="messages_container">
+            <div class="sender-msg-container row" v-for="m in messages.filter(item => item.sid == 0)" >  <div class="sender-msg">{{ m.msg }} {{ m.timeStamp }} </div> </div>
+            <div class="bot-msg-container row" v-for="m in messages.filter(item => item.sid == 1)">  <div class="bot-msg"> {{ m.msg }} {{ m.timeStamp }}  </div> </div>
 
         </div>
         <div class="input-msg-container ">
@@ -72,7 +72,11 @@ export default {
         onSocketMessage(event){
             var receivedData = JSON.parse(event.data);
             console.log(receivedData);
-            this.messages.push({sid:1, msg:receivedData});
+            let date = new Date();
+            let timeStamp = date.getHours()+":"+date.getMinutes();
+            this.messages.push({sid:1, msg:receivedData, timeStamp:timeStamp});
+            
+
 
         },
         onSocketError(){
@@ -81,13 +85,14 @@ export default {
         sendMsg(){
             debugger
             this.webSocket.send(JSON.stringify(this.newMessage));
-            this.messages.push({sid:0, msg:this.newMessage});
+            let date = new Date();
+            let timeStamp = date.getHours()+":"+date.getMinutes();
+            this.messages.push({sid:0, msg:this.newMessage, timeStamp:timeStamp});
+            //scroll to bottom
+            // const messages_div = document.getElementById('messages_container');
+            // messages_div.scrollTo({top: messages_div.scrollHeight, behavior: 'smooth'});
             this.newMessage = "";
         }
-    },
-    mounted(){
-        console.log("mounted");
-        this.inititalizeChat();
     },
     created() {
         console.log("created");
@@ -98,29 +103,64 @@ export default {
         //     console.log("Connection ready!");
         // }
     },
+    mounted(){
+        console.log("mounted");
+        this.inititalizeChat();
+    },
 }
 </script>
 
 <style scoped>
+.main-container{
+    border-radius: 15px;
+    /* margin-top: 45%; */
+    /* margin-left: 45%; */
+    /* margin-right: 0; */
+    height: 100%;
+    position: absolute;
+    /* position: relative; */
+    width: 50%;
+    height: 50%;
+    /* left:0; */
+    bottom:10%;
+    right: 2%;
+    background-image: url("../assets/background.jpg");
+    color: white;
+    font-size: small;
+    font-family: monospace;
+    /* overflow-x: scroll; */
+    overflow-y:scroll;
+
+    
+}
+@media only screen and (max-width:1024px) {
+    .main-container{
+
+    }
+}
 .messages-container {
     /* max-height: max-content;
     background: url("../assets/background.jpg"); */
     /* height: 70vh; */
-    overflow-y: hidden;
+    /* overflow-x: scroll; */
+    /* overflow: scroll; */
     overflow-x: hidden;
+    overflow-y: auto;
+
 }
 
 h1 {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     text-align: center;
-    color: rgb(27, 110, 27)
+    background-color: rgb(31, 105, 83,0.5);
+    color:whitesmoke;
 }
 
-.main-container {
-    color: black;
-    font-size: small;
-    font-family: monospace;
-    /* background-size: cover; */
-}
+/* .main-container {
+ 
+    
+} */
 
 .sender-msg-container {
    
@@ -129,10 +169,14 @@ h1 {
     float: right;
     width:100%;
     display: block;
+    /* margin-right: 1%; */
+
 }
 .sender-msg{
     text-align: end;
-    background-color: #2dbd2d;
+    /* background-color: #2dbd2d; */
+    background-color: rgb(31, 105, 83);
+
     color: white;
     padding: 10px;
     border-radius: 10px;
@@ -150,6 +194,8 @@ h1 {
     width:100%;
     float: left;
     display: block;
+    /* margin-left: 1%; */
+
 
 }
 .bot-msg{
@@ -174,7 +220,9 @@ h1 {
 .input-msg-container input {
     width: 100%;
     height: 30px;
-    border: 1px solid green;
+    /* border: 1px solid green; */
+    border: 1px solid rgb(31, 105, 83);
+
     border-radius: 5px;
 }
 
@@ -186,6 +234,7 @@ h1 {
 
 .input-msg-container button {
     background-color: #2dbd2d;
+    background-color:  rgb(31, 105, 83);
     color: white;
     border-radius: 10px;
     margin: 10px;

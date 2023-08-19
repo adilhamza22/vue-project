@@ -20,27 +20,18 @@
             Students <i class="bi bi-mortarboard-fill"></i></router-link>
           <router-link to="/teachers" class="d-flex justify-content-between">
             Teachers<i class="bi bi-person-workspace"></i></router-link>
+          <!-- <router-link to="/chat" class="d-flex justify-content-between">
+            Chat Support<i class="bi bi-chat"></i></router-link> -->
         </nav>
       </div>
       <div class="right-main container">
-        <!-- <div v-show="rightContainerNotOpen">
-          <b-card
-            overlay
-            img-src="https://picsum.photos/900/250/?image=3"
-            img-alt="Card Image"
-            text-variant="white"
-            title="Image Overlay"
-            sub-title="Subtitle"
-          >
-            <b-card-text>
-              Some quick example text to build on the card and make up the bulk
-              of the card's content.
-            </b-card-text>
-          </b-card>
-        </div> -->
-        <!-- <img class="responsive" src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=873&q=80"> -->
-
-        <router-view />
+        <div class="render-chat-container">
+          <ChatSupport v-if="showChat"/>
+        </div>
+        <div class="chat-support-toggler" @click="showChatSupport()">
+          <i class="bi bi-chat chat-icon"></i>
+        </div>
+        <router-view v-if="showChat==false"/>
       </div>
     </div>
   </div>
@@ -49,16 +40,19 @@
 
 import UserProfile from "@/components/UserProfile.vue";
 import NavBarBrand from "@/components/NavBarBrand.vue";
+import ChatSupport from "@/components/ChatSupport.vue";
 export default {
   name: "DashBoard",
   components: {
     // eslint-disable-next-line vue/no-unused-components
     UserProfile,
     NavBarBrand,
+    ChatSupport,
   },
   data() {
     return {
       rightContainerNotOpen: true,
+      showChat:false,
     };
   },
   methods: {
@@ -66,22 +60,57 @@ export default {
       this.rightContainerNotOpen = false;
       console.log(this.rightContainerNotOpen);
     },
+    showChatSupport(){
+      this.showChat = !this.showChat;
+      
+    }
   },
-  beforeCreate() {
-    alert("beforeCreate parent")
-  },
-  created(){
-    alert("created parent")
-  },
-  beforeMount() {
-    alert("beforeMount parent")
-  },
-  mounted() {
-    alert("mounted parent")
-  },
+  // beforeCreate() {
+  //   alert("beforeCreate parent")
+  // },
+  // created(){
+  //   alert("created parent")
+  // },
+  // beforeMount() {
+  //   alert("beforeMount parent")
+  // },
+  // mounted() {
+  //   alert("mounted parent")
+  // },
 };
 </script>
 <style scoped>
+.chat-icon{
+  font-size: 1.75rem;
+  font-weight: lighter;
+}
+.render-chat-container{
+  position: absolute;
+  right:0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.chat-support-toggler{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position:fixed;
+  right:2%;
+  bottom:2%;
+  border-radius: 5px;
+  background-color: rgb(31, 105, 83,0.9);
+  color: white;
+  width:50px;
+  height:50px;
+  z-index: 10;
+}
+.chat-support-toggler:hover{
+  cursor: pointer;
+}
+nav a{
+  text-decoration: none;
+}
 @media only screen and (max-width: 768px) {
   .left-main {
     display: none !important;
@@ -137,12 +166,14 @@ export default {
 .left-main router-link {
 }
 .right-main {
+  position: relative;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0;
+  /* z-index: -1; */
 }
 /* .right-main img{
   width: 100%;

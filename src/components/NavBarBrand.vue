@@ -1,5 +1,5 @@
 <template lang="">
-  <div>
+  <div class="navbar-brand-container">
     <b-navbar toggleable="lg" type="dark" variant="info">
       <b-navbar-brand href="#">Data Portal X</b-navbar-brand>
 
@@ -71,6 +71,9 @@ export default {
 </script>
 
 <style>
+.navbar-brand-container{
+  /* display: flex */
+}
 .responsive-nav-item{
   display: none;
 }

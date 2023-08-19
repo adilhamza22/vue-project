@@ -55,6 +55,12 @@ const routes = [
         // UserProfile will be rendered inside User's <router-view>
         path: "/",
         component: UserProfile,
+        // children:[
+        //   {
+        //     path:"/chat",
+        //     component: ChatSupport,
+        //   }
+        // ]
       },
       {
         // UserProfile will be rendered inside User's <router-view>
@@ -72,16 +78,18 @@ const routes = [
       {
         path: "/students",
         component: HelloWorld,
-      },{
+      },
+      {
         path: "/teachers",
         component: HelloWorld,
       },
+      
     ],
   },
-  {
-    path: "/chat",
-    component: ChatSupport,
-  }
+  // {
+  //   path: "/chat",
+  //   component: ChatSupport,
+  // }
 ];
 
 const router = new VueRouter({
