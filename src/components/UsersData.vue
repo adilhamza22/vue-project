@@ -71,7 +71,10 @@ export default {
       //   ],
     };
   },
+ 
+  
   mounted() {
+      // alert("mounted child")
       this.loading = true;
       setTimeout(() => {
         vue.axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {

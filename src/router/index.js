@@ -10,6 +10,7 @@ import Users from "@/components/UsersData.vue";
 import EditProfile from "@/components/EditProfile.vue";
 import HelloWorld from "@/components/HelloWorld.vue";
 import CarouselHome from "@/components/CarouselHome.vue";
+import ChatSupport from "@/components/ChatSupport.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -41,11 +42,19 @@ const routes = [
     path: "/dashboard",
     name: "DashBoard",
     component: DashBoard,
+    // beforeEnter: (to, from) => {
+
+    //   let authUser = JSON.parse(localStorage.getItem("authUser"));
+    //   if(authUser=={} && to.path=="/"){
+    //     return false;
+    //   }
+    //   return true;
+    // },
     children: [
       {
         // UserProfile will be rendered inside User's <router-view>
         path: "/",
-        component: CarouselHome,
+        component: UserProfile,
       },
       {
         // UserProfile will be rendered inside User's <router-view>
@@ -69,6 +78,10 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/chat",
+    component: ChatSupport,
+  }
 ];
 
 const router = new VueRouter({

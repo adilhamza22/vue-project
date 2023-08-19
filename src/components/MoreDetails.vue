@@ -7,18 +7,18 @@
         </div>
 
         <div class="inner-div-modal">
-          <p class="my-4 d-flex justify-content-between">
-            <span>City:</span> <span>{{ data.city }}</span>
-          </p>
-          <p class="my-4 d-flex justify-content-between">
-            <span>ZipCode:</span> <span>{{ data.zipcode }}</span>
-          </p>
-          <p class="my-4 d-flex justify-content-between">
-            <span>Street:</span> <span>{{ data.street }}</span>
-          </p>
-          <p class="my-4 d-flex justify-content-between">
-            <span>Suite:</span><span> {{ data.suite }}</span>
-          </p>
+          <div class="my-4 d-flex justify-content-between">
+            <span class="col">City:</span> <span class="col ">{{ data.city }}</span>
+          </div>
+          <div class="my-4 d-flex justify-content-between">
+            <span class="col">Zip:</span> <span class="col">{{ data.zipcode }}</span>
+          </div>
+          <div class="my-4 d-flex justify-content-between">
+            <span class="col">Street:</span> <span class="col">{{ data.street }}</span>
+          </div>
+          <div class="my-4 d-flex justify-content-between">
+            <span class="col">Suite:</span><span class="col"> {{ data.suite }}</span>
+          </div>
         </div>
       </div>
     </b-modal>
@@ -42,13 +42,14 @@ export default {
     height: 90vh;
     left: 32%;
     top: 25%;
-    overflow-y: scroll;
+  overflow-y: auto;
 }
 .inner-div-modal span{
   font-weight: lighter  !important;
   font-family: serif  !important;
     font-size: small  !important;
 }
+
 #modal-1 div:first-child {
   max-width: 100%;
 
@@ -109,6 +110,13 @@ export default {
   .inner-div-modal{
     width: 100%!important;
   }
+  .inner-div-modal div{
+    justify-content: center  !important;;
+  }
+  /* .inner-div-modal span{
+    padding: 0 5px !important;
+    margin: 0 2px!important;
+  } */
   .inner-div-modal-avatar{
     display: flex !important;
     justify-content: center;

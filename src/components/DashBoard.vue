@@ -17,11 +17,9 @@
             Edit Profile <i class="bi bi-person-gear"></i
           ></router-link>
           <router-link to="/students" class="d-flex justify-content-between">
-            Students <i class="bi bi-person-gear"></i
-          ></router-link>
+            Students <i class="bi bi-mortarboard-fill"></i></router-link>
           <router-link to="/teachers" class="d-flex justify-content-between">
-            Teachers<i class="bi bi-person-gear"></i
-          ></router-link>
+            Teachers<i class="bi bi-person-workspace"></i></router-link>
         </nav>
       </div>
       <div class="right-main container">
@@ -48,6 +46,7 @@
   </div>
 </template>
 <script>
+
 import UserProfile from "@/components/UserProfile.vue";
 import NavBarBrand from "@/components/NavBarBrand.vue";
 export default {
@@ -67,6 +66,18 @@ export default {
       this.rightContainerNotOpen = false;
       console.log(this.rightContainerNotOpen);
     },
+  },
+  beforeCreate() {
+    alert("beforeCreate parent")
+  },
+  created(){
+    alert("created parent")
+  },
+  beforeMount() {
+    alert("beforeMount parent")
+  },
+  mounted() {
+    alert("mounted parent")
   },
 };
 </script>

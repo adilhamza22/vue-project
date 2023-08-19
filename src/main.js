@@ -20,6 +20,17 @@ import VueSimpleAlert from "vue-simple-alert";
 
 Vue.use(VueSimpleAlert);
 
+
+// import socketio from 'socket.io-client';
+// // import VueSocketIO from 'vue-socket.io';
+
+// export const SocketInstance = socketio('http://localhost:3000');
+
+// Vue.use(VueSocketIO, SocketInstance);
+
+
+
+
 Vue.config.productionTip = false;
 // const dashboard = createApp(DashBoard);
 // dashboard.component("user-profile", UserProfile);
