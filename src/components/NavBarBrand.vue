@@ -13,6 +13,7 @@
           <b-nav-item href="/edit"class="responsive-nav-item">Edit Profile</b-nav-item>
           <b-nav-item href="/students"class="responsive-nav-item">View Students</b-nav-item>
           <b-nav-item href="/teachers"class="responsive-nav-item">View Teachers</b-nav-item>
+          <b-nav-item href="/applications"class="responsive-nav-item">View Applications</b-nav-item>
           <!-- <b-nav-item href="/about">About Us</b-nav-item> -->
         </b-navbar-nav>
 
@@ -61,9 +62,16 @@ export default {
   methods: {
     logOut() {
       let clickUser = {};
-      localStorage.setItem("clickUser", JSON.stringify(clickUser));
+      let loggedInUser =[];
+      // localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+      loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+      if(loggedInUser){
+        localStorage.setItem("loggedInUser", JSON.stringify(""));
+        window.location.href = "signin";
+        
+      }
       //   this.$router.go = "signin";
-      window.location.href = "signin";
+      // window.location.href = "signin";
       //    this.$router.push("dashboard");
     },
   },

@@ -11,9 +11,16 @@ import EditProfile from "@/components/EditProfile.vue";
 import HelloWorld from "@/components/HelloWorld.vue";
 import CarouselHome from "@/components/CarouselHome.vue";
 import ChatSupport from "@/components/ChatSupport.vue";
+import RegistrationForm from "@/components/RegistrationForm.vue";
+import UserApplications from "@/components/UserApplications.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  // {
+  //   path:"/applications",
+  //   component: UserApplications,
+
+  // },
   {
     path: "/",
     name: "signin",
@@ -83,8 +90,17 @@ const routes = [
         path: "/teachers",
         component: HelloWorld,
       },
+      {
+        path:"/applications",
+        component: UserApplications,
+      }
+      
       
     ],
+  },
+  {
+    path:"/register",
+    component: RegistrationForm,
   },
   // {
   //   path: "/chat",

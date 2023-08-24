@@ -11,6 +11,24 @@
     <div class="container right-container">
       <h3>SignUp</h3>
       <b-form @submit="onSubmit" v-if="show">
+        <b-form-group id="input-group-2" label="First Name:" label-for="input-2">
+          <b-form-input
+            id="input-2"
+            v-model="form.Fname"
+            placeholder="Enter name"
+            required
+          ></b-form-input>
+        </b-form-group>
+
+        <b-form-group id="input-group-2" label="Last Name:" label-for="input-2">
+          <b-form-input
+            id="input-2"
+            v-model="form.Lname"
+            placeholder="Enter name"
+            required
+          ></b-form-input>
+        </b-form-group>
+
         <b-form-group
           id="input-group-1"
           label="Email address:"
@@ -26,14 +44,6 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
-          <b-form-input
-            id="input-2"
-            v-model="form.name"
-            placeholder="Enter name"
-            required
-          ></b-form-input>
-        </b-form-group>
 
         <b-form-group
           id="input-group-2"
@@ -59,43 +69,66 @@
 </template>
 
 <script>
+import vue from "vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
+vue.use(VueAxios, axios);
 export default {
   data() {
     return {
       form: {
         email: "",
-        name: "",
+        Fname: "",
+        Lname: "",
         password: "",
+        success:true,
       },
       show: true,
     };
   },
   methods: {
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault();
       let formData = this.form;
       // alert(JSON.stringify(this.form));
       // console.log(this.email);
       let user = {
         email: formData.email,
-        name: formData.name,
+        Fname: formData.Fname,
+        Lname: formData.Lname,
         password: formData.password,
       };
       // alert(JSON.stringify(user));
 
       let authUser = JSON.parse(localStorage.getItem("authUser"));
-
-      if (authUser) {
-        authUser.push(user);
-        localStorage.setItem("authUser", JSON.stringify(authUser));
-      }
-      if (!authUser) {
-        let authUser = [];
-        authUser.push(user);
-        localStorage.setItem("authUser", JSON.stringify(authUser));
-      }
-      alert("SuccessFully Signed Up");
-      this.$router.push("signin");
+      
+     
+        //send axios 
+        await vue.axios.post("http://192.168.11.209:8080/signup", user).then((res) => {
+          console.log(res.data.message);
+          if(res.status==201){
+            if (authUser) {
+              authUser.push(user);
+              localStorage.setItem("authUser", JSON.stringify(authUser));
+              alert("SuccessFully Signed Up");
+              this.$router.push("signin");
+            }
+            if (!authUser) {
+              let authUser = [];
+              authUser.push(user);
+              localStorage.setItem("authUser", JSON.stringify(authUser));
+              alert("SuccessFully Signed Up");
+              this.$router.push("signin");
+            }  
+          }
+        }).catch((err) => {
+          console.log(err.message);
+        });
+        // let socket = io("http://192.168.11.209:8080");
+        // socket.emit("signup", user);
+      
+      
+      
       console.log(authUser);
       // this.form[input] = value
 
@@ -109,9 +142,11 @@ export default {
       event.preventDefault();
       // Reset our form values
       this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
+      this.form.Fname = "";
+      this.form.Lname = "";
+      this.form.password="";
+      // this.form.food = null;
+      // this.form.checked = [];
       window.location.href = "signin";
 
       // Trick to reset/clear native browser form validation state

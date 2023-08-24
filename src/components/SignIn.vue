@@ -48,48 +48,88 @@
   </div>
 </template>
 <script>
+import vue from "vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
+vue.use(VueAxios, axios);
 export default {
   data() {
     return {
       form: {
         email: "",
         name: "",
+        Fname:"",
+        Lname:"",
         password: "",
+        loggedInUser: [],
       },
       show: true,
     };
   },
   methods: {
-    onSubmit(event) {
+    async onSubmit(event) {
       event.preventDefault();
       // alert(JSON.stringify(this.form));
 
       let authUser = JSON.parse(localStorage.getItem("authUser"));
-      let clickUser;
+      let clickUser ={
+        email: this.form.email,
+        password: this.form.password,
+      }
       // alert(JSON.stringify(authUser));
-      if (authUser) {
-        let findUser = authUser.find((item) => {
-          return (
-            item.email == this.form.email && item.password == this.form.password
-          );
-        });
-        if (findUser) {
-          alert("Success!");
-          clickUser = {
-            email: findUser.email,
-            name: findUser.name,
-            password: findUser.password,
-          };
-          localStorage.setItem("clickUser", JSON.stringify(clickUser));
-          this.$router.push("dashboard");
-        }
-        if (!findUser) {
-          alert("Please signup first");
-        }
-      }
-      if (!authUser) {
-        alert("Signup first");
-      }
+
+       await vue.axios.post("http://192.168.11.209:8080/login", clickUser).then((res) => {
+            console.log(res);
+            if(res.status==200){
+              // this.loggedInUser.push(res.user);
+              this.loggedInUser = res.data.user;
+              this.email = res.data.user.email;
+              this.Fname = res.data.user.Fname;
+              this.Lname = res.data.user.Lname;
+              this.name = this.Fname + this.Lname;
+              console.log("logged in :",this.loggedInUser);
+              localStorage.setItem("loggedInUser", JSON.stringify(this.loggedInUser));
+              alert("Success!");
+              this.$router.push("dashboard");
+            }
+            else{
+              alert("Please signup first or check your credentials");
+            }
+       
+            
+          }).catch((err) => {
+            console.log(err.message);
+            // alert("Error Signing In, Please try again or signup first");
+
+          });
+
+
+
+
+      // if (authUser) {
+      //   let findUser = authUser.find((item) => {
+      //     return (
+      //       item.email == this.form.email && item.password == this.form.password
+      //     );
+      //   });
+      //   if (findUser) {
+      //     alert("Success!");
+      //     clickUser = {
+      //       email: findUser.email,
+      //       name: findUser.name,
+      //       password: findUser.password,
+      //     };
+      //     localStorage.setItem("clickUser", JSON.stringify(clickUser));
+         
+      //     this.$router.push("dashboard");
+      //   }
+      //   if (!findUser) {
+      //     alert("Please signup first");
+      //   }
+      // }
+      // if (!authUser) {
+      //   alert("Signup first");
+      // }
     },
     onSignUp(event) {
       event.preventDefault();

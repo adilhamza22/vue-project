@@ -38,7 +38,13 @@
 // import WebSocket from 'ws';
 // const WebSocket = new WebSocket("wss://socketsbay.com/wss/v2/100/c4330f660a99a1ce55ea9ab3f11c1ac6/");
 // const WebSocket = new WebSocket();
+
+import { io } from "socket.io-client";
+
 export default {
+    // devServer: {
+    //     proxy: 'https://mainsite.com/',
+    // },
     data() {
         return {
             //    connection: null,
@@ -53,38 +59,66 @@ export default {
         }
     },
     methods: {
-        inititalizeChat(){
+        async inititalizeChat(){
             console.log("inititalizeChat");
              //connect to Sockets Bay
-            let webSocket = new WebSocket("wss://socketsbay.com/wss/v2/100/c4330f660a99a1ce55ea9ab3f11c1ac6/");
+            // let webSocket = new WebSocket("wss://socketsbay.com/wss/v2/100/c4330f660a99a1ce55ea9ab3f11c1ac6/");
+            // let webSocket = new WebSocket("wss://192.168.11.213:3000/");
+            // const webSocket = new WebSocket("ws://192.168.11.213:3000");
+            // const socket = io("http://192.168.11.213:3000"); // zain server
+            let socket = io("http://192.168.11.209:8080"); // muzammil server
+            // this.webSocket = socket;
+            await this.webSocket.emit("connection", () => {
+               this.onSocketOpen();
+                // console.log("");
+            });     
+            await this.webSocket.on("chat message", (msg) => {
+                this.onSocketMessage(msg);
+                // console.log(msg);
+            });
+            
+
+            // socket.emit("chat message",{message:"helo zain"});
+            // socket.on("chat message", (msg) => {
+            //     console.log(msg);
+            // });
             // var sockets_bay_url = `wss://socketsbay.com/wss/v2/100/${this.socketsBayApiKey}/`;
             // webSocket = new WebSocket(sockets_bay_url);
             // webSocket = WebSocket;
-            this.webSocket = webSocket;
-            webSocket.onopen = this.onSocketOpen;
-            webSocket.onmessage = this.onSocketMessage;
-            webSocket.onerror = this.onSocketError;
+                // this.webSocket = webSocket;
+                // webSocket.onopen = this.onSocketOpen;
+                // webSocket.onmessage = this.onSocketMessage;
+                // webSocket.onerror = this.onSocketError;
         },
         onSocketOpen(event){
             this.connectionReady=true;
             console.log("Connection ready!");
         },
-        onSocketMessage(event){
-            var receivedData = JSON.parse(event.data);
-            console.log(receivedData);
-            let date = new Date();
-            let timeStamp = date.getHours()+":"+date.getMinutes();
-            this.messages.push({sid:1, msg:receivedData, timeStamp:timeStamp});
-            
-
-
+        onSocketMessage(msg){
+            // var receivedData = JSON.parse(event.data);
+            // let receivedData;
+            // this.webSocket.on("chat message", (msg) => {
+                
+                console.log(msg);
+                // receivedData = msg;
+                // console.log(receivedData);
+                let date = new Date();
+                let timeStamp = date.getHours()+":"+date.getMinutes();
+                this.messages.push({sid:1, msg:msg, timeStamp:timeStamp});
+                    
+            // });
+            // console.log(receivedData);
+            // let date = new Date();
+            // let timeStamp = date.getHours()+":"+date.getMinutes();
+            // this.messages.push({sid:1, msg:receivedData, timeStamp:timeStamp});
         },
         onSocketError(){
             this.connectionError =true;
         },
         sendMsg(){
             debugger
-            this.webSocket.send(JSON.stringify(this.newMessage));
+            // this.webSocket.send(JSON.stringify(this.newMessage));
+            this.webSocket.emit("chat message",this.newMessage);
             let date = new Date();
             let timeStamp = date.getHours()+":"+date.getMinutes();
             this.messages.push({sid:0, msg:this.newMessage, timeStamp:timeStamp});
@@ -96,6 +130,12 @@ export default {
     },
     created() {
         console.log("created");
+        setTimeout(() => {
+            this.webSocket = io("http://192.168.11.209:8080"); // muzammil server
+            // this.webSocket =io("http://192.168.11.212:3000");//moazamm server
+            // this.webSocket =io("192.168.11.208:3000");//zaid 
+            this.inititalizeChat();
+        }, 3000);
         // this.connection = new WebSocket(this.socketsBayApiKey);
         // this.connection.onopen = () => {
         //     this.connectionReady = true;
@@ -105,7 +145,8 @@ export default {
     },
     mounted(){
         console.log("mounted");
-        this.inititalizeChat();
+        
+
     },
 }
 </script>

@@ -4,7 +4,8 @@
     <div class="card-body">
       <p class="card-text user-card-data">
         <h5 class="mb-1">{{ name }}</h5>
-                  <p class="mb-2 pb-1" style="color: #2b2a2a">
+                  <p class="logged in : 
+mb-2 pb-1" style="color: #2b2a2a">
                     <Sub>Senior Journalist</Sub>
                   </p>
                   <p class="mb-0 mx-4">
@@ -25,6 +26,8 @@ export default {
   data() {
     return {
       name: "",
+      Fname:"",
+      Lname:"",
       email: "",
     };
   },
@@ -36,16 +39,18 @@ export default {
     getData() {
       let myUser = JSON.parse(localStorage.getItem("authUser"));
       let clickUser = JSON.parse(localStorage.getItem("clickUser"));
-      let userObjCurr = myUser.find((item) => item.email == clickUser.email);
+      let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+      // let userObjCurr = myUser.find((item) => item.email == clickUser.email);
       let currname, email;
-      if (userObjCurr) {
-        currname = userObjCurr.name;
+      if (loggedInUser) {
+        currname = loggedInUser.Fname + loggedInUser.Lname;
         this.name = currname;
         currname = currname.toUpperCase();
-        email = userObjCurr.email;
+        email = loggedInUser.email;
       }
       console.log(clickUser, " ClickUser");
-      console.log(userObjCurr, " userobjCurr");
+      // console.log(userObjCurr, " userobjCurr");
+      console.log("loggedin", loggedInUser);
       console.log("runnig");
       this.name = currname;
       this.email = email;

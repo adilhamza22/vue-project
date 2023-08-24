@@ -20,18 +20,20 @@
             Students <i class="bi bi-mortarboard-fill"></i></router-link>
           <router-link to="/teachers" class="d-flex justify-content-between">
             Teachers<i class="bi bi-person-workspace"></i></router-link>
+            <router-link to="applications" class="d-flex justify-content-between">
+            Applications<i class="bi bi-r-square"></i></router-link>
           <!-- <router-link to="/chat" class="d-flex justify-content-between">
             Chat Support<i class="bi bi-chat"></i></router-link> -->
         </nav>
       </div>
       <div class="right-main container">
+        <router-view v-if="showChat==false"/>
         <div class="render-chat-container">
           <ChatSupport v-if="showChat"/>
         </div>
         <div class="chat-support-toggler" @click="showChatSupport()">
           <i class="bi bi-chat chat-icon"></i>
         </div>
-        <router-view v-if="showChat==false"/>
       </div>
     </div>
   </div>
@@ -41,6 +43,7 @@
 import UserProfile from "@/components/UserProfile.vue";
 import NavBarBrand from "@/components/NavBarBrand.vue";
 import ChatSupport from "@/components/ChatSupport.vue";
+import UserApplications from "@/components/UserApplications.vue";
 export default {
   name: "DashBoard",
   components: {
@@ -48,6 +51,7 @@ export default {
     UserProfile,
     NavBarBrand,
     ChatSupport,
+    UserApplications,
   },
   data() {
     return {
@@ -62,9 +66,21 @@ export default {
     },
     showChatSupport(){
       this.showChat = !this.showChat;
-      
+      if(this.showChat==false){
+        document.querySelector(".render-chat-container").style.display = "none";
+      }
+      else{
+        document.querySelector(".render-chat-container").style.display = "block";
+
+      }
+
     }
   },
+  mounted(){
+    if(this.showChat==false){
+        document.querySelector(".render-chat-container").style.display = "none";
+      }
+  }
   // beforeCreate() {
   //   alert("beforeCreate parent")
   // },
