@@ -152,11 +152,11 @@
           const data = new FormData();
             data.append("cv", this.form.file1);
             data.append("Fname", this.form.fName);
-            data.append("Lastname", this.form.lName);
+            data.append("Lname", this.form.lName);
             data.append('phoneNo', this.form.phone);
             data.append('email', this.form.email);
-            data.append('CNIC', this.form.cnic);
-            data.append('DOB', this.form.dob);
+            data.append('cnic', this.form.cnic);
+            data.append('dob', this.form.dob);
             data.append('age', this.form.age);
             data.append('address', this.form.address);
             data.append('coverLetter', "uhuh");
@@ -179,18 +179,20 @@
             // data = {fname:this.form.fName,Lastname:this.form.lName,email:this.form.email,cv:"",coverLetter:"",
             // phoneNo:this.form.phone,age:this.form.age,gender:this.form.gender,DOB:this.form.dob,address:this.form.address,cnic:this.form.cnic
             // };
-            await vue.axios.post("http://192.168.11.209:8080/registration",data).then((res) => {
+            await vue.axios.post("http://192.168.11.209:8080/auth/registration",data).then((res) => {
             console.log(res);
             if(res.status == 201){
-                alert("Successfully Registered");
+                this.$alert("Successfully Registered");
+                
                 // this.$router.push("signin");
                 // this.$router.push("register");
             }
             if(res.status == 500){
-                alert("Server Error Occured");
+                this.$alert("Server Error Occured");
             }
-            else{
-                alert(res.error);
+            if(res.status!=201){
+                this.$alert("Cannot Register, try again later");
+                // alert(res.error);
             }
             })
             // .catch((err) => {

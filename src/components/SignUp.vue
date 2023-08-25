@@ -104,20 +104,20 @@ export default {
       
      
         //send axios 
-        await vue.axios.post("http://192.168.11.209:8080/signup", user).then((res) => {
+        await vue.axios.post("http://192.168.11.209:8080/auth/signup", user).then((res) => {
           console.log(res.data.message);
           if(res.status==201){
             if (authUser) {
               authUser.push(user);
               localStorage.setItem("authUser", JSON.stringify(authUser));
-              alert("SuccessFully Signed Up");
+              this.$alert("SuccessFully Signed Up");
               this.$router.push("signin");
             }
             if (!authUser) {
               let authUser = [];
               authUser.push(user);
               localStorage.setItem("authUser", JSON.stringify(authUser));
-              alert("SuccessFully Signed Up");
+              this.$alert("SuccessFully Signed Up");
               this.$router.push("signin");
             }  
           }

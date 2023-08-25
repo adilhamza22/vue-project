@@ -68,6 +68,7 @@ export default {
   },
   methods: {
     async onSubmit(event) {
+      debugger
       event.preventDefault();
       // alert(JSON.stringify(this.form));
 
@@ -78,7 +79,7 @@ export default {
       }
       // alert(JSON.stringify(authUser));
 
-       await vue.axios.post("http://192.168.11.209:8080/login", clickUser).then((res) => {
+       await vue.axios.post("http://192.168.11.209:8080/auth/login", clickUser).then((res) => {
             console.log(res);
             if(res.status==200){
               // this.loggedInUser.push(res.user);
@@ -89,16 +90,21 @@ export default {
               this.name = this.Fname + this.Lname;
               console.log("logged in :",this.loggedInUser);
               localStorage.setItem("loggedInUser", JSON.stringify(this.loggedInUser));
-              alert("Success!");
+              this.$alert("Success!");
               this.$router.push("dashboard");
             }
             else{
-              alert("Please signup first or check your credentials");
+              this.$alert("Please signup first or check your credentials");
             }
        
             
           }).catch((err) => {
             console.log(err.message);
+            console.log(err);
+            console.log(err.response.request.status);
+            if(err.response.request.status==404){
+              this.$alert("Error Signing In, Please try again or signup first");
+            }
             // alert("Error Signing In, Please try again or signup first");
 
           });
