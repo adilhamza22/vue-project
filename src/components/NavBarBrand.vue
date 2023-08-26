@@ -1,7 +1,8 @@
 <template lang="">
   <div class="navbar-brand-container">
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">Data Portal X</b-navbar-brand>
+    <!-- add fixed="top" to b-navbar to make it fixed -->
+    <b-navbar toggleable="lg" type="dark" variant="info" > 
+      <b-navbar-brand href="#"><img src="../assets/color-logo- no-bg.svg" width="150px" height="50px"></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -81,7 +82,12 @@ export default {
 <style>
 .navbar-brand-container{
   /* display: flex */
+  /* position: sticky; */
 }
+.navbar-brand-container a{
+  color: black;
+}
+
 .responsive-nav-item{
   display: none;
 }

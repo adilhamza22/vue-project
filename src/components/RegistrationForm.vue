@@ -1,13 +1,18 @@
 <template>
     <div class="reg-form-main">
         <div class="reg-form mw-100">
-            <div class="header p-2 mw-100 row">
+            <img src="../assets/color-logo- no-bg.svg" alt="logo" width="200px" height="100px">
+
+            <div class="header p-2 mw-100 row d-flex align-items-baseline">
                 <!-- <h3 class="">Register for Data Portal X</h3> -->
-                <div class="col logo-col">
-                    <img src="../assets/logo-x.jpg" alt="logo" width="100px" height="100px">
-                </div>
+                <!-- <div class="col logo-col">
+
+                    <img src="../assets/color-logo- no-bg.svg" alt="logo" width="120px" height="100px">
+                </div> -->
                 <div class="col signup-col">
-                    <h3 class="">Apply for Internship at DPX</h3>
+                    <h3 class="">Application For Summer Internship</h3>
+
+                    <!-- <h3 class="">Application For Summer Internship</h3> -->
                 </div>
             </div>
         <div>
@@ -236,7 +241,10 @@
     /* vertical-align: middle; */
 }
 .reg-form-main{
-    background-color: rgba(219, 219, 219, 0.911);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+
+    /* background-color: rgba(219, 219, 219, 0.911); */
+    background-image: linear-gradient(45deg, #b1b1b1, #0dcaf0);
     background-attachment: fixed;
     background-size: cover;
     /* width: inherit;
@@ -249,13 +257,40 @@
     overflow-y: auto;
 }
 .reg-form{
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
+    background-color: white;
     padding: 2rem;
     border-radius: 15px;
     width: 70%;
     /* height: ; */
     text-align: left;
     overflow-y: auto;
+    height: 70%;
+}
+@media only screen and (max-width:1440px) and (min-width: 1025px){
+    .reg-form{
+        /* height: 60%; */
+    }
+}
+@media only screen and (max-width:425px) {
+    .reg-form{
+        height: 80%;
+    }
+}
+@media only screen and (max-width:375px) {
+    .reg-form{
+        height: 80%;
+        width: 80%;
+    }
+}
+
+.reg-form h3{
+        color: black;
+        font-size: medium;
+
+    /* font-style: oblique; */
+    font-weight: 700    ;
+    font-size: smaller  ;
 }
 .reg-form button{
     background-color: rgb(64, 180, 155);
@@ -264,6 +299,9 @@
     margin: 1%;
     /* margin: 1rem; */
     /* padding: 0 1rem; */
+}
+.reg-form input::placeholder{
+    font-size: smaller;
 }
 
 </style>

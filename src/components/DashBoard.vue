@@ -1,9 +1,9 @@
 <template>
   <div>
-    <NavBarBrand />
+    <NavBarBrand  class="navbar-brand"/>
     <div id="home" class="container mw-100">
       <div class="left-main container">
-        <nav>
+        <nav class="left-nav">
           <router-link
             @click="removeOverlay()"
             to="/profile"
@@ -96,6 +96,15 @@ export default {
 };
 </script>
 <style scoped>
+.navbar-brand{
+  /* margin-bottom: 5%; */
+  /* position: sticky; */
+}
+.left-nav{
+  position: sticky;
+  left: 0;
+  overflow-y:hidden;
+}
 .chat-icon{
   font-size: 1.75rem;
   font-weight: lighter;
