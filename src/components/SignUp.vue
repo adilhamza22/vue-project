@@ -11,7 +11,8 @@
       <!-- <img src ="../assets/logoipsum-227.svg" class="left-logo"  width="250px" > -->
     </div>
     <div class="container right-container">
-      <img src ="../assets/logoipsum-227.svg" class="left-logo"  width="250px" >
+      <!-- <img src ="../assets/logoipsum-227.svg" class="left-logo"  width="250px" > -->
+      <img src ="../assets/color-logo- no-bg.svg" class="left-logo"  width="250px" >
 
       <h3>SignUp</h3>
       <b-form @submit="onSubmit" v-if="show">
@@ -178,7 +179,7 @@ export default {
   z-index: 1 !important; 
   position: absolute;
   left: 0 ;
-  opacity: 0.7;
+  opacity: 0.8;
   width: 100%;
 }
 /* .left-container .left-logo{
@@ -190,7 +191,7 @@ export default {
   
 } */
 .right-container {
-  height: 70vh;
+  /* height: 70vh; */
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -198,20 +199,32 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  /* added */
+  /* border: 1px solid gray; */
+  border-radius: 5%;
+    /* margin: 0 1%; */
+    box-sizing: border-box;
+    padding: 1%;
+    /* box-shadow: 1px 1px 1px 1px lightgray; */
+
 }
 .right-container h3 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 2.25rem !important;
   font-style: oblique;
-  color:royalblue !important;
+  /* color:royalblue !important; */
+  color: #2c3e50 !important;
+
 }
 .right-container div {
   text-align: start;
 }
 .right-container button {
   width: 10vw;
-  background-color: dodgerblue !important;
+  /* background-color: dodgerblue !important; */
+  background-color: #00ade3 !important;
+
   border: none;
   margin: 1%;
   /* background-color: #2a343f; */
@@ -234,6 +247,16 @@ export default {
   .left-container {
     display: none;
     color: black;
+  }
+  .right-container{
+    height: 98%;
+    width: 90%;
+       /* border: 1px solid gray; */
+       border-radius: 5%;
+    /* margin: 0 1%; */
+    box-sizing: border-box;
+    padding: 1%;
+    box-shadow: 2px 2px 2px 2px gray;
   }
   .right-container form {
     width: 70%;

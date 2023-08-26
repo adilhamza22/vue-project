@@ -9,7 +9,7 @@
       ></b-img>
     </div>
     <div class="container right-container">
-      <img src ="../assets/logoipsum-227.svg" class="left-logo"  width="250px" >
+      <img src ="../assets/color-logo- no-bg.svg" class="left-logo"  width="250px" >
       
       <h3>LogIn</h3>
       <b-form @submit="onSubmit" v-if="show">
@@ -183,7 +183,7 @@ export default {
   border-radius: 0 !important;
 }
 .right-container {
-  height: 70vh;
+  /* height: 70vh; */
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -192,27 +192,37 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   color: black;
+  /* added */
+    /* border: 1px solid gray; */
+    border-radius: 5%;
+    /* margin: 0 1%; */
+    box-sizing: border-box;
+    padding: 1%;
+    /* box-shadow: 1px 1px 1px 1px lightgray; */
+
+
 }
 .right-container h3 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 2.25rem !important;
   font-style: oblique;
-  color:royalblue !important;
+  /* color:royalblue !important; */
 
 }
 .right-container div {
   text-align: start;
 }
 .right-container h3 {
-  color: #2c3e50;
+  color: #2c3e50 !important;
 }
 .right-container button {
   width: 10vw;
   border: none;
   margin: 1%;
   /* background-color: #2a343f; */
-  background-color: dodgerblue !important;
+  /* background-color: dodgerblue !important; */
+  background-color: #00ade3 !important;
 
 }
 .right-container form {
@@ -229,6 +239,16 @@ export default {
   .left-container {
     display: none;
     color: black;
+  }
+  .right-container{
+    height: 80%;
+    width: 90%;
+       /* border: 1px solid gray; */
+       border-radius: 5%;
+    /* margin: 0 1%; */
+    box-sizing: border-box;
+    padding: 1%;
+    box-shadow: 2px 2px 2px 2px gray;
   }
   .right-container form {
     width: 70%;
