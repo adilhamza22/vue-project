@@ -3,12 +3,16 @@
   <div class="d-flex container mw-100 main">
     <div class="container left-container">
       <b-img
-        src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=806&q=80"
+        class="left-img"
+        src = "https://images.unsplash.com/photo-1579226905180-636b76d96082?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
         fluid
         alt="Responsive image"
       ></b-img>
+      <!-- <img src ="../assets/logoipsum-227.svg" class="left-logo"  width="250px" > -->
     </div>
     <div class="container right-container">
+      <img src ="../assets/logoipsum-227.svg" class="left-logo"  width="250px" >
+
       <h3>SignUp</h3>
       <b-form @submit="onSubmit" v-if="show">
         <b-form-group id="input-group-2" label="First Name:" label-for="input-2">
@@ -160,11 +164,31 @@ export default {
 </script>
 <style scoped>
 .main {
-  height: 80vh;
+  /* height: 80vh; */
+  height: 100%;
   position: absolute;
-  top: 10%;
+  padding: 0;
+  /* top: 10%; */
+
 }
-.left-container,
+.left-container{
+  position: relative !important;
+}
+.left-container .left-img{
+  z-index: 1 !important; 
+  position: absolute;
+  left: 0 ;
+  opacity: 0.7;
+  width: 100%;
+}
+/* .left-container .left-logo{
+  z-index: 2 !important;
+  position: absolute !important;
+  left: 0%;
+  top:0;
+  height: 10% !important;
+  
+} */
 .right-container {
   height: 70vh;
   align-self: center;
@@ -178,22 +202,26 @@ export default {
 .right-container h3 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 3rem !important;
+  font-size: 2.25rem !important;
   font-style: oblique;
+  color:royalblue !important;
 }
 .right-container div {
   text-align: start;
 }
 .right-container button {
   width: 10vw;
-  background-color: #2a343f;
+  background-color: dodgerblue !important;
+  border: none;
+  margin: 1%;
+  /* background-color: #2a343f; */
 }
 .right-container form {
   width: 30vw;
 }
 .left-container img {
   height: 100%;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 @media only screen and (max-width: 768px) {
   body {
@@ -201,6 +229,7 @@ export default {
   }
   .main {
     color: black;
+    /* background-image: url("https://images.unsplash.com/photo-1640158615573-cd28feb1bf4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"); */
   }
   .left-container {
     display: none;

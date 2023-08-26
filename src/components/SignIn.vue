@@ -2,12 +2,15 @@
   <div class="d-flex container mw-100 main">
     <div class="container left-container">
       <b-img
-        src="https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=806&q=80"
+        class="left-img"
+        src="https://images.unsplash.com/photo-1579226905180-636b76d96082?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
         fluid
         alt="Responsive image"
       ></b-img>
     </div>
     <div class="container right-container">
+      <img src ="../assets/logoipsum-227.svg" class="left-logo"  width="250px" >
+      
       <h3>LogIn</h3>
       <b-form @submit="onSubmit" v-if="show">
         <b-form-group
@@ -157,13 +160,28 @@ export default {
 </script>
 <style scoped>
 .main {
-  height: 80vh;
+  /* height: 80vh; */
+  height: 100%;
+  padding: 0;
   position: absolute;
-  top: 10%;
+  /* top: 10%; */
   color: black;
 }
 
-.left-container,
+.left-container{
+  position: relative !important;
+
+}
+.left-container .left-img{
+  z-index: 1 !important; 
+  position: absolute;
+  left: 0 ;
+  opacity: 0.8;
+  width: 100%;
+}
+.left-container img{
+  border-radius: 0 !important;
+}
 .right-container {
   height: 70vh;
   align-self: center;
@@ -178,8 +196,10 @@ export default {
 .right-container h3 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 3rem !important;
+  font-size: 2.25rem !important;
   font-style: oblique;
+  color:royalblue !important;
+
 }
 .right-container div {
   text-align: start;
@@ -189,7 +209,11 @@ export default {
 }
 .right-container button {
   width: 10vw;
-  background-color: #2a343f;
+  border: none;
+  margin: 1%;
+  /* background-color: #2a343f; */
+  background-color: dodgerblue !important;
+
 }
 .right-container form {
   width: 30vw;
