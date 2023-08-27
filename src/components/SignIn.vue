@@ -1,4 +1,4 @@
-<template>
+.right-container small<template>
   <div class="d-flex container mw-100 main">
     <div class="container left-container">
       <b-img
@@ -209,6 +209,12 @@ export default {
   font-style: oblique;
   /* color:royalblue !important; */
 
+}
+::v-deep .right-container label{
+  font-size: small !important;
+}
+::v-deep .right-container small{
+  font-size: x-small !important;
 }
 .right-container div {
   text-align: start;

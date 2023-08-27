@@ -208,6 +208,12 @@ export default {
     /* box-shadow: 1px 1px 1px 1px lightgray; */
 
 }
+::v-deep .right-container label{
+  font-size: small !important;
+}
+::v-deep .right-container small{
+  font-size: x-small !important;
+}
 .right-container h3 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;

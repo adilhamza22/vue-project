@@ -1,6 +1,7 @@
 <template>
     <div class="main-container">
-        <h1>CHAT X</h1>
+        <!-- <h1>CHAT X</h1> -->
+        <h1><img src="../assets/color-logo- no-bg.svg" height="50px" width="100px"></h1>
         <span v-if="connectionReady">Online</span>
         <span v-if="connectionError">ConnectionError</span>
 
@@ -192,9 +193,9 @@ export default {
 
 h1 {
     border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    /* border-top-right-radius: 15px; */
     text-align: center;
-    background-color: rgb(31, 105, 83,0.5);
+    background-color: rgb(31, 105, 83,0.8);
     color:whitesmoke;
 }
 

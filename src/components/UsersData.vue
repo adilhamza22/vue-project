@@ -118,6 +118,11 @@ export default {
   background-color: #ffffff !important;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+.user-table thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 1px;
+}
 @media only screen and (max-width: 768px){
   .right-main {
       width: 90%!important;
