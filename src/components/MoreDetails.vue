@@ -1,3 +1,4 @@
+<!-- MODAL MORE DETAILS COMPONENT -->
 <template>
   <div>
     <b-modal id="modal-1" class="modal responsive more-details-modal" title="Residential Details">
@@ -54,9 +55,20 @@ export default {
   max-width: 100%;
 
 }
+#modal-1 .close{
+  display: none !important;
+}
+#modal-1 .btn-secondary{
+  display: none !important;
+}
+#modal-1 .btn-primary{
+  background-color: rgb(7, 131, 125) !important;
+}
 /* .modal-details{
   left: 10%;
 } */
+
+
 @media only screen and (max-width:992px){
  
   #modal-1 div:first-child {
