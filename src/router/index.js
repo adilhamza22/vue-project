@@ -114,12 +114,16 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to,from,next)=>{
-//   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-//   //if route other than signin and user is not authenticated
-//   if(to.name !="signin" && loggedInUser==null || undefined ||""){
-//     next({name:"signin"});
-//   }
-// });
+router.beforeEach((to,from,next)=>{
+  let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  console.log("loggedInUser",loggedInUser);
+  //if route other than signin and user is not authenticated
+  if(to.name !=="signin" && (loggedInUser == null || undefined ||"" )){
+    next({name:"signin"});
+  }
+  else{
+    next();
+  }
+});
 
 export default router;
