@@ -119,9 +119,9 @@ export default {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .user-table thead, tbody, tfoot, tr, td, th {
-    border-color: inherit;
-    border-style: solid;
-    border-width: 1px;
+    border-color: inherit !important;
+    border-style: solid !important;
+    border-width: 1px !important;
 }
 @media only screen and (max-width: 768px){
   .right-main {
