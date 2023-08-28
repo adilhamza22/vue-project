@@ -49,6 +49,11 @@ const routes = [
     path: "/dashboard",
     name: "DashBoard",
     component: DashBoard,
+    beforeEnter: (to, from, next) => {
+      if(from.path!="/signin" ){
+        next({name:"signin"});
+      }
+    },
     // beforeEnter: (to, from) => {
 
     //   let authUser = JSON.parse(localStorage.getItem("authUser"));
@@ -101,6 +106,7 @@ const routes = [
   {
     path:"/register",
     component: RegistrationForm,
+    
   },
   // {
   //   path: "/chat",
@@ -114,16 +120,21 @@ const router = new VueRouter({
   routes,
 });
 
-router.beforeEach((to,from,next)=>{
-  let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  console.log("loggedInUser",loggedInUser);
-  //if route other than signin and user is not authenticated
-  if(to.name !=="signin" && (loggedInUser == null || undefined ||"" )){
-    next({name:"signin"});
-  }
-  else{
-    next();
-  }
-});
+// router.beforeEach((to,from,next)=>{
+//   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+//   console.log("loggedInUser",loggedInUser);
+  
+//   //if route other than signin and user is not authenticated
+//   if(to.name !="signin"   && loggedInUser == "" ){
+//     next({name:"signin"});
+//   }
+//   else{
+//     next();
+//   }
+
+// });
+
+
+
 
 export default router;
