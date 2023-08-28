@@ -49,11 +49,11 @@ const routes = [
     path: "/dashboard",
     name: "DashBoard",
     component: DashBoard,
-    beforeEnter: (to, from, next) => {
-      if(from.path!="/signin" ){
-        next({name:"signin"});
-      }
-    },
+    // // beforeEnter: (to, from, next) => {
+    // //   if(from.path!="/signin" ){
+    // //     next({name:"signin"});
+    // //   }
+    // },
     // beforeEnter: (to, from) => {
 
     //   let authUser = JSON.parse(localStorage.getItem("authUser"));

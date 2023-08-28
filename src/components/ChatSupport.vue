@@ -171,7 +171,8 @@ export default {
     font-size: small;
     font-family: monospace;
     /* overflow-x: scroll; */
-    overflow-y:scroll;
+    /* overflow-y:scroll; */
+    overflow: hidden;
 
     
 }
@@ -188,6 +189,7 @@ export default {
     /* overflow: scroll; */
     overflow-x: hidden;
     overflow-y: auto;
+    height: 100%;
 
 }
 
