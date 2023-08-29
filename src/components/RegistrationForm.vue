@@ -168,6 +168,15 @@
             data.append('education', "jjnj");
             data.append('gender', this.form.gender);
             console.log("test lname",this.form.lName);
+            console.log("file1",this.form.file1);
+            // if(this.phone.length<11){
+            //     this.$alert("Phone number must be 11 digits long");
+            //     return;
+            // }
+            // if(this.age<15){
+            //     this.$alert("Phone number must be 11 digits long");
+            //     return;
+            // }
         //   data.fName = this.form.fName;
         //   data.Lastname = this.form.lName;
         //   data.email = this.form.email;
@@ -180,6 +189,10 @@
         //   data.address = this.form.address;
         //   data.cnic = this.form.cnic;
             console.log("form:",this.form);
+            if(!(this.form.file1.name.match(/.pdf/) || this.form.file1.name.match(/.jpg/) || this.form.file1.name.match(/.jpeg/) || this.form.file1.name.match(/.png/) )){
+                console.log("file1",this.form.file1);
+                return;
+            }
             console.log("test",data);
             // data = {fname:this.form.fName,Lastname:this.form.lName,email:this.form.email,cv:"",coverLetter:"",
             // phoneNo:this.form.phone,age:this.form.age,gender:this.form.gender,DOB:this.form.dob,address:this.form.address,cnic:this.form.cnic
@@ -192,19 +205,25 @@
                 // this.$router.push("signin");
                 // this.$router.push("register");
             }
-            if(res.status == 500){
-                this.$alert("Server Error Occured");
-            }
-            if(res.status!=201){
+            else{  
+                console.log("not 201");
+                alert("Cannot Register, try again later"); 
                 this.$alert("Cannot Register, try again later");
-                // alert(res.error);
-            }
+
+            }   
+            // if(res.status == 500){
+            //     this.$alert("Server Error Occured");
+            // }
+            // if(res.status!=201){
+            //     this.$alert("Cannot Register, try again later");
+            //     // alert(res.error);
+            // }
             })
-            // .catch((err) => {
-            //     console.log(err.error);
-            //     // alert(err.data.error);
-            //     // alert(err.message);
-            // });
+            .catch((err) => {
+                console.log(err);
+                // alert(err.data.error);
+                // alert(err.message);
+            });
         },
         // onReset(event) {
         //   event.preventDefault()

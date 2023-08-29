@@ -13,8 +13,7 @@
         <div class="input-msg-container ">
             <input v-model="newMessage" type="text" placeholder="Ask Expert?" />
             <button v-on:click="sendMsg()">Send</button>
-        </div>
-
+        </div>        
         <!-- <h1>Chat X<span class="connection_ready" v-if="connection_ready">Connection ready!</span></h1>
         
         <div class="messages" id="messages">
@@ -106,6 +105,8 @@ export default {
                 let date = new Date();
                 let timeStamp = date.getHours()+":"+date.getMinutes();
                 this.messages.push({sid:1, msg:msg, timeStamp:timeStamp});
+                localStorage.setItem("messages", JSON.stringify(this.messages));
+
                     
             // });
             // console.log(receivedData);
@@ -123,6 +124,7 @@ export default {
             let date = new Date();
             let timeStamp = date.getHours()+":"+date.getMinutes();
             this.messages.push({sid:0, msg:this.newMessage, timeStamp:timeStamp});
+            localStorage.setItem("messages", JSON.stringify(this.messages));
             //scroll to bottom
             // const messages_div = document.getElementById('messages_container');
             // messages_div.scrollTo({top: messages_div.scrollHeight, behavior: 'smooth'});
@@ -149,6 +151,11 @@ export default {
         
 
     },
+    beforeDestroy(){
+        this.messages=[];
+        localStorage.setItem("messages", JSON.stringify(this.messages));
+        
+    }
 }
 </script>
 
@@ -162,7 +169,7 @@ export default {
     position: absolute;
     /* position: relative; */
     width: 50%;
-    height: 50%;
+    height: 70%;
     /* left:0; */
     bottom:10%;
     right: 2%;
@@ -176,9 +183,9 @@ export default {
 
     
 }
-@media only screen and (max-width:1024px) {
+@media only screen and (max-width: 425px) {
     .main-container{
-
+        width: 70%;
     }
 }
 .messages-container {
@@ -259,11 +266,13 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
+    
 }
 
 .input-msg-container input {
     width: 100%;
-    height: 30px;
+    height: 50px;
+    /* height: 30px; */
     /* border: 1px solid green; */
     border: 1px solid rgb(31, 105, 83);
 
@@ -272,6 +281,7 @@ h1 {
 
 
 .input-msg-container input::placeholder {
+    padding-left: 2%;
     font-size: small;
     font-family: monospace;
 }
@@ -281,6 +291,6 @@ h1 {
     background-color:  rgb(31, 105, 83);
     color: white;
     border-radius: 10px;
-    margin: 10px;
+    /* margin: 10px; */
     border: none;
 }</style>

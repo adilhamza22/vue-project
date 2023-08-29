@@ -104,7 +104,17 @@ export default {
         password: formData.password,
       };
       // alert(JSON.stringify(user));
-
+      if (user.email && user.password) {
+        if(user.password.length<8){
+          this.$alert("Password must be atleast 8 characters long");
+          return;
+        }
+        if(user.password=="" || user.email=="" || user.Fname=="" || user.Lname==""){
+          this.$alert("Please fill all the fields");
+          return;
+        }
+      }
+        //
       let authUser = JSON.parse(localStorage.getItem("authUser"));
       
      

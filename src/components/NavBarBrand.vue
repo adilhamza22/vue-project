@@ -71,10 +71,14 @@ export default {
         // window.location.href = "signin";
         // this.$router.go = "signin";
         console.log("logged out");
-         this.$router.push("signin");        
+        // window.location.href = "signin";
+
+         this.$router.push("/signin");        
       }
       else{
-        this.$router.push("signin");        
+        this.$router.push("/signin");    
+        // window.location.href = "signin";
+
 
       }
       //   this.$router.go = "signin";

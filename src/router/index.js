@@ -15,6 +15,10 @@ import RegistrationForm from "@/components/RegistrationForm.vue";
 import UserApplications from "@/components/UserApplications.vue";
 Vue.use(VueRouter);
 
+
+
+
+
 const routes = [
   // {
   //   path:"/applications",
@@ -49,19 +53,26 @@ const routes = [
     path: "/dashboard",
     name: "DashBoard",
     component: DashBoard,
-    // // beforeEnter: (to, from, next) => {
-    // //   if(from.path!="/signin" ){
-    // //     next({name:"signin"});
-    // //   }
+    beforeEnter: (to, from, next) => {
+      let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+        console.log("loggedInUser from guard", loggedInUser);
+        if(loggedInUser){
+          next();
+        }
+        else{
+          next({name:"signin"});
+        }
+      },
+    // beforeEnter: (to, from, next) => {
+    //   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    //    if(loggedInUser == "" && to.name =="dashboard"){
+    //      next({name:"signin"});
+    //    }
+    //    else{
+    //       next();
+    //    }
     // },
-    // beforeEnter: (to, from) => {
 
-    //   let authUser = JSON.parse(localStorage.getItem("authUser"));
-    //   if(authUser=={} && to.path=="/"){
-    //     return false;
-    //   }
-    //   return true;
-    // },
     children: [
       {
         // UserProfile will be rendered inside User's <router-view>

@@ -64,6 +64,7 @@ export default {
         Fname:"",
         Lname:"",
         password: "",
+        access_token: "",
         loggedInUser: [],
       },
       show: true,
@@ -80,6 +81,14 @@ export default {
         email: this.form.email,
         password: this.form.password,
       }
+      // if(clickUser.password=""||clickUser.email==""){
+      //   this.$alert("Please fill all the fields");
+      //   return;
+      // }
+      // if(clickUser.password.length<8){
+      //     this.$alert("Password must be atleast 8 characters long");
+      //     return;
+      //   }
       // alert(JSON.stringify(authUser));
 
        await vue.axios.post("http://192.168.11.209:8080/auth/login", clickUser).then((res) => {
@@ -91,6 +100,10 @@ export default {
               this.Fname = res.data.user.Fname;
               this.Lname = res.data.user.Lname;
               this.name = this.Fname + this.Lname;
+
+              // this.access_token = res.token;
+              // console.log(this.access_token);
+              this.loggedInUser.access_token= res.token;
               console.log("logged in :",this.loggedInUser);
               localStorage.setItem("loggedInUser", JSON.stringify(this.loggedInUser));
               this.$alert("Success!");

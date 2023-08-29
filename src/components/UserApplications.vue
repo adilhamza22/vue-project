@@ -31,7 +31,10 @@
             <span><b-btn @click="downloadCV(item._id)">Download</b-btn></span>
           </template>
           <template v-slot:cell(UpdateStatus)="{ item  }">
-            <span><b-btn class="req-btn" @click="updateStatus(item.email,item.status)">Request</b-btn></span>
+            <span><b-btn class="req-btn" @click="updateStatus(item.email,item.status,item.Fname)">Request</b-btn></span>
+          </template>
+          <template v-slot:cell(Reject)="{ item  }">
+            <span><b-btn class="reject-btn" @click="rejectUser(item.email,item.Fname)">Reject</b-btn></span>
           </template>
         </b-table>
 
@@ -72,7 +75,7 @@ export default {
       // ],
       searchText: '',
       users: [],
-      fields: ["Fname", "Lname","status","UpdateStatus" ,"age", "gender", "address", "cnic", "CV"],
+      fields: ["Fname", "Lname","status","UpdateStatus", "Reject" ,"age", "gender", "address", "cnic", "CV"],
       filteredUsers: [],
       showFilter: false,
       pageUsers: '',
@@ -196,12 +199,27 @@ export default {
         method: 'GET',
         responseType: 'blob',
       }).then((response) => {
+        console.log(response);
+        let fileType = response.headers['content-type'];
+        let extension="";
+        if(fileType == "application/pdf"){
+          extension = ".pdf";
+        }
+        if(fileType == "image/png"){
+          extension = ".png";
+        }
+        if(fileType == "image/jpeg"){
+          extension = ".jpeg";
+        }
+        if(fileType == "image/jpg"){
+          extension = ".jpg";
+        }
+        console.log(fileType);
         var fileURL = window.URL.createObjectURL(new Blob([response.data]));
         var fileLink = document.createElement('a');
         // var fileLink = document.getElementById
-
         fileLink.href = fileURL;
-        fileLink.setAttribute('download', 'file.pdf');
+        fileLink.setAttribute('download', `file${extension}`);
         document.body.appendChild(fileLink);
         console.log("filelink", fileLink);
         console.log("fileurl", fileURL);
@@ -230,7 +248,7 @@ export default {
 
       });
     },
-    async updateStatus(_email,_status){
+    async updateStatus(_email,_status,_fname){
       debugger
       await vue.axios.post("http://192.168.11.209:8080/function/update-status", {email:_email,status:"accepted"}).then((res)=>{
         console.log(res);
@@ -240,6 +258,13 @@ export default {
           let id = res.data.user._id;
           this.updateLocalStatus(id);
           this.$alert("Status Updated");
+          // acceptUser(_email,_fname);
+          vue.axios.post("http://192.168.11.209:8080/function/accept", { TO: _email, name: _fname }).then((res => {
+            console.log(res);
+            this.$alert("User Accepted");
+          })).catch((err) => {
+            console.log(err);
+          });
 
         }
         if(res.status!=200){
@@ -261,7 +286,26 @@ export default {
         }
       })
     },
-  }
+    async rejectUser(_email,_fname){
+      debugger
+      await vue.axios.post("http://192.168.11.209:8080/function/reject",{TO:_email,name: _fname}).then((res=>{
+        this.$alert("User Rejected");
+        console.log(res);
+      })).catch((err)=>{
+        console.log(err);
+      });
+    },
+    // async acceptUser(_email,_fname){
+    //   debugger
+    //   await vue.axios.post("http://192.168.11.209:8080/function/accept" , {TO:_email,name: _fname}).then((res=>{
+    //     console.log(res);
+    //     this.$alert("User Accepted");
+    //   })).catch((err)=>{
+    //     console.log(err);
+    //   });
+
+    // },
+  },
 
 
 
@@ -290,6 +334,7 @@ export default {
   background-color: darkcyan;
   color: white;
   border-radius: 15px;
+  margin-bottom: 5% !important;
 }
 /* .filters-div .bi-funnel::after{
   /* display: none !important; 

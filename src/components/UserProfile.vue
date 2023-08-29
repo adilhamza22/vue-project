@@ -43,7 +43,7 @@ export default {
       // let userObjCurr = myUser.find((item) => item.email == clickUser.email);
       let currname, email;
       if (loggedInUser) {
-        currname = loggedInUser.Fname + loggedInUser.Lname;
+        currname = loggedInUser.Fname + " "+ loggedInUser.Lname;
         this.name = currname;
         currname = currname.toUpperCase();
         email = loggedInUser.email;
