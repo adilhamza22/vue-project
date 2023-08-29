@@ -124,30 +124,30 @@ export default {
   left: 30%;
   width: 30vw;
 }
-.password-card-body input::placeholder{
-    font-size: small;
-  }
-@media only screen and (max-width:768px) {
-  .right-main{
+.password-card-body input::placeholder {
+  font-size: small;
+}
+@media only screen and (max-width: 768px) {
+  .right-main {
     width: 70%;
   }
   .edit-profile {
     width: 60% !important;
     left: 20% !important;
   }
-  .password-card-body input::placeholder{
+  .password-card-body input::placeholder {
     font-size: x-small;
   }
 }
-@media only screen and (max-width:490px){
-  .right-main{
+@media only screen and (max-width: 490px) {
+  .right-main {
     width: 80%;
   }
-  .edit-profile{
+  .edit-profile {
     width: 90% !important;
     left: 5% !important;
   }
-  .password-card-body input::placeholder{
+  .password-card-body input::placeholder {
     font-size: x-small;
   }
 }

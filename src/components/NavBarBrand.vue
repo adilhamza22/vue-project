@@ -1,20 +1,34 @@
 <template lang="">
   <div class="navbar-brand-container">
     <!-- add fixed="top" to b-navbar to make it fixed -->
-    <b-navbar toggleable="lg" type="dark" variant="info" > 
-      <b-navbar-brand href="#"><img src="../assets/color-logo- no-bg.svg" width="150px" height="50px"></b-navbar-brand>
+    <b-navbar toggleable="lg" type="dark" variant="info">
+      <b-navbar-brand href="#"
+        ><img src="../assets/color-logo- no-bg.svg" width="150px" height="50px"
+      /></b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item href="/dashboard">Home</b-nav-item>
-          <b-nav-item href="/users" class="responsive-nav-item">Display Users</b-nav-item>
-          <b-nav-item href="/profile" class="responsive-nav-item">Profile</b-nav-item>
-          <b-nav-item href="/edit"class="responsive-nav-item">Edit Profile</b-nav-item>
-          <b-nav-item href="/students"class="responsive-nav-item">View Students</b-nav-item>
-          <b-nav-item href="/teachers"class="responsive-nav-item">View Teachers</b-nav-item>
-          <b-nav-item href="/applications"class="responsive-nav-item">View Applications</b-nav-item>
+          <b-nav-item href="/users" class="responsive-nav-item"
+            >Display Users</b-nav-item
+          >
+          <b-nav-item href="/profile" class="responsive-nav-item"
+            >Profile</b-nav-item
+          >
+          <b-nav-item href="/edit" class="responsive-nav-item"
+            >Edit Profile</b-nav-item
+          >
+          <b-nav-item href="/students" class="responsive-nav-item"
+            >View Students</b-nav-item
+          >
+          <b-nav-item href="/teachers" class="responsive-nav-item"
+            >View Teachers</b-nav-item
+          >
+          <b-nav-item href="/applications" class="responsive-nav-item"
+            >View Applications</b-nav-item
+          >
           <!-- <b-nav-item href="/about">About Us</b-nav-item> -->
         </b-navbar-nav>
 
@@ -48,7 +62,8 @@
               Sign Out <i class="bi bi-box-arrow-left"></i
             ></b-dropdown-item>
             <b-dropdown-item href="/profile" id="sign-out">
-              Profile <i class="bi bi-person-square logout-menu-avatar"></i></b-dropdown-item>
+              Profile <i class="bi bi-person-square logout-menu-avatar"></i
+            ></b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -63,23 +78,21 @@ export default {
   methods: {
     logOut() {
       let clickUser = {};
-      let loggedInUser =[];
+      let loggedInUser = [];
       // localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
       loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-      if(loggedInUser){
+      localStorage.setItem("messages",[]);
+      if (loggedInUser) {
         localStorage.setItem("loggedInUser", JSON.stringify(""));
         // window.location.href = "signin";
         // this.$router.go = "signin";
         console.log("logged out");
         // window.location.href = "signin";
 
-         this.$router.push("/signin");        
-      }
-      else{
-        this.$router.push("/signin");    
+        this.$router.push("/signin");
+      } else {
+        this.$router.push("/signin");
         // window.location.href = "signin";
-
-
       }
       //   this.$router.go = "signin";
       // window.location.href = "signin";
@@ -90,19 +103,21 @@ export default {
 </script>
 
 <style>
-.navbar-brand-container{
+.navbar-brand-container {
   /* display: flex */
   /* position: sticky; */
 }
-.navbar-brand-container a{
+.navbar-brand-container a {
   color: black;
 }
 
-.responsive-nav-item{
+.responsive-nav-item {
   display: none;
 }
-@media only screen and (max-width:768px){
-  .responsive-nav-item{display: block;}
+@media only screen and (max-width: 768px) {
+  .responsive-nav-item {
+    display: block;
+  }
 }
 #sign-out {
   display: flex;

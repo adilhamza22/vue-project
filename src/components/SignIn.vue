@@ -1,4 +1,5 @@
-.right-container small<template>
+.right-container small
+<template>
   <div class="d-flex container mw-100 main">
     <div class="container left-container">
       <b-img
@@ -9,8 +10,12 @@
       ></b-img>
     </div>
     <div class="container right-container">
-      <img src ="../assets/color-logo- no-bg.svg" class="left-logo"  width="250px" >
-      
+      <img
+        src="../assets/color-logo- no-bg.svg"
+        class="left-logo"
+        width="250px"
+      />
+
       <h3>LogIn</h3>
       <b-form @submit="onSubmit" v-if="show">
         <b-form-group
@@ -42,10 +47,16 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger" @click="onSignUp"
-          >SignUp</b-button
-        >
+        <div class="d-flex flex-column text-center align-items-center">
+          <b-button type="submit" variant="primary">Login</b-button>
+          <p class="signup-para">
+            <a href="/signup" style="text-decoration: none; font-size: small"
+              >Or SignUp</a>
+          </p>
+        </div>
+        <!-- <b-button type="reset" variant="danger" @click="onSignUp"
+          >SignUp</b-button -->
+        <!-- > -->
       </b-form>
     </div>
   </div>
@@ -61,8 +72,8 @@ export default {
       form: {
         email: "",
         name: "",
-        Fname:"",
-        Lname:"",
+        Fname: "",
+        Lname: "",
         password: "",
         access_token: "",
         loggedInUser: [],
@@ -72,15 +83,15 @@ export default {
   },
   methods: {
     async onSubmit(event) {
-      debugger
+      debugger;
       event.preventDefault();
       // alert(JSON.stringify(this.form));
 
       let authUser = JSON.parse(localStorage.getItem("authUser"));
-      let clickUser ={
+      let clickUser = {
         email: this.form.email,
         password: this.form.password,
-      }
+      };
       // if(clickUser.password=""||clickUser.email==""){
       //   this.$alert("Please fill all the fields");
       //   return;
@@ -91,42 +102,41 @@ export default {
       //   }
       // alert(JSON.stringify(authUser));
 
-       await vue.axios.post("http://192.168.11.209:8080/auth/login", clickUser).then((res) => {
-            console.log(res);
-            if(res.status==200){
-              // this.loggedInUser.push(res.user);
-              this.loggedInUser = res.data.user;
-              this.email = res.data.user.email;
-              this.Fname = res.data.user.Fname;
-              this.Lname = res.data.user.Lname;
-              this.name = this.Fname + this.Lname;
+      await vue.axios
+        .post("http://192.168.11.209:8080/auth/login", clickUser)
+        .then((res) => {
+          console.log(res);
+          if (res.status == 200) {
+            // this.loggedInUser.push(res.user);
+            this.loggedInUser = res.data.user;
+            this.email = res.data.user.email;
+            this.Fname = res.data.user.Fname;
+            this.Lname = res.data.user.Lname;
+            this.name = this.Fname + this.Lname;
 
-              // this.access_token = res.token;
-              // console.log(this.access_token);
-              this.loggedInUser.access_token= res.token;
-              console.log("logged in :",this.loggedInUser);
-              localStorage.setItem("loggedInUser", JSON.stringify(this.loggedInUser));
-              this.$alert("Success!");
-              this.$router.push("dashboard");
-            }
-            else{
-              this.$alert("Please signup first or check your credentials");
-            }
-       
-            
-          }).catch((err) => {
-            console.log(err.message);
-            console.log(err);
-            console.log(err.response.request.status);
-            if(err.response.request.status==404){
-              this.$alert("Error Signing In, Please try again or signup first");
-            }
-            // alert("Error Signing In, Please try again or signup first");
-
-          });
-
-
-
+            // this.access_token = res.token;
+            // console.log(this.access_token);
+            this.loggedInUser.access_token = res.token;
+            console.log("logged in :", this.loggedInUser);
+            localStorage.setItem(
+              "loggedInUser",
+              JSON.stringify(this.loggedInUser)
+            );
+            this.$alert("Success!");
+            this.$router.push("dashboard");
+          } else {
+            this.$alert("Please signup first or check your credentials");
+          }
+        })
+        .catch((err) => {
+          console.log(err.message);
+          console.log(err);
+          console.log(err.response.request.status);
+          if (err.response.request.status == 404) {
+            this.$alert("Error Signing In, Please try again or signup first");
+          }
+          // alert("Error Signing In, Please try again or signup first");
+        });
 
       // if (authUser) {
       //   let findUser = authUser.find((item) => {
@@ -142,7 +152,7 @@ export default {
       //       password: findUser.password,
       //     };
       //     localStorage.setItem("clickUser", JSON.stringify(clickUser));
-         
+
       //     this.$router.push("dashboard");
       //   }
       //   if (!findUser) {
@@ -156,10 +166,10 @@ export default {
     onSignUp(event) {
       event.preventDefault();
       // Reset our form values
-        // this.form.email = "";
-        // this.form.name = "";
-        // this.form.food = null;
-        // this.form.checked = [];
+      // this.form.email = "";
+      // this.form.name = "";
+      // this.form.food = null;
+      // this.form.checked = [];
       // Trick to reset/clear native browser form validation state
       // this.show = false;
       // this.$nextTick(() => {
@@ -181,18 +191,17 @@ export default {
   color: black;
 }
 
-.left-container{
+.left-container {
   position: relative !important;
-
 }
-.left-container .left-img{
-  z-index: 1 !important; 
+.left-container .left-img {
+  z-index: 1 !important;
   position: absolute;
-  left: 0 ;
+  left: 0;
   opacity: 0.8;
   width: 100%;
 }
-.left-container img{
+.left-container img {
   border-radius: 0 !important;
 }
 .right-container {
@@ -206,14 +215,12 @@ export default {
   align-items: center;
   color: black;
   /* added */
-    /* border: 1px solid gray; */
-    border-radius: 5%;
-    /* margin: 0 1%; */
-    box-sizing: border-box;
-    padding: 1%;
-    /* box-shadow: 1px 1px 1px 1px lightgray; */
-
-
+  /* border: 1px solid gray; */
+  border-radius: 5%;
+  /* margin: 0 1%; */
+  box-sizing: border-box;
+  padding: 1%;
+  /* box-shadow: 1px 1px 1px 1px lightgray; */
 }
 .right-container h3 {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -221,12 +228,11 @@ export default {
   font-size: 2.25rem !important;
   font-style: oblique;
   /* color:royalblue !important; */
-
 }
-::v-deep .right-container label{
+::v-deep .right-container label {
   font-size: small !important;
 }
-::v-deep .right-container small{
+::v-deep .right-container small {
   font-size: x-small !important;
 }
 .right-container div {
@@ -236,13 +242,19 @@ export default {
   color: #2c3e50 !important;
 }
 .right-container button {
-  width: 10vw;
+  /* width: 10vw; */
+  width: 8vw;
   border: none;
-  margin: 1%;
+  /* margin: 1%; */
+  margin: 2%;
   /* background-color: #2a343f; */
   /* background-color: dodgerblue !important; */
   background-color: #00ade3 !important;
-
+}
+.right-container .signup-para {
+  width: 10vw;
+  border: none;
+  margin: 1%;
 }
 .right-container form {
   width: 30vw;
@@ -259,11 +271,11 @@ export default {
     display: none;
     color: black;
   }
-  .right-container{
+  .right-container {
     height: 80%;
     width: 90%;
-       /* border: 1px solid gray; */
-       border-radius: 5%;
+    /* border: 1px solid gray; */
+    border-radius: 5%;
     /* margin: 0 1%; */
     box-sizing: border-box;
     padding: 1%;

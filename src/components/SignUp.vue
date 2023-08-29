@@ -4,7 +4,7 @@
     <div class="container left-container">
       <b-img
         class="left-img"
-        src = "https://images.unsplash.com/photo-1579226905180-636b76d96082?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+        src="https://images.unsplash.com/photo-1579226905180-636b76d96082?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
         fluid
         alt="Responsive image"
       ></b-img>
@@ -12,11 +12,19 @@
     </div>
     <div class="container right-container">
       <!-- <img src ="../assets/logoipsum-227.svg" class="left-logo"  width="250px" > -->
-      <img src ="../assets/color-logo- no-bg.svg" class="left-logo"  width="250px" >
+      <img
+        src="../assets/color-logo- no-bg.svg"
+        class="left-logo"
+        width="250px"
+      />
 
       <h3>SignUp</h3>
       <b-form @submit="onSubmit" v-if="show">
-        <b-form-group id="input-group-2" label="First Name:" label-for="input-2">
+        <b-form-group
+          id="input-group-2"
+          label="First Name:"
+          label-for="input-2"
+        >
           <b-form-input
             id="input-2"
             v-model="form.Fname"
@@ -49,7 +57,6 @@
           ></b-form-input>
         </b-form-group>
 
-
         <b-form-group
           id="input-group-2"
           label="Your Password:"
@@ -65,9 +72,14 @@
         </b-form-group>
 
         <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger" @click="onSignIn"
+        <p class="login-para">
+            <a href="/signin" style="text-decoration: none; font-size: small"
+              >Already a user?</a
+            >
+          </p>
+        <!-- <b-button type="reset" variant="danger" @click="onSignIn"
           >Login</b-button
-        >
+        > -->
       </b-form>
     </div>
   </div>
@@ -86,7 +98,7 @@ export default {
         Fname: "",
         Lname: "",
         password: "",
-        success:true,
+        success: true,
       },
       show: true,
     };
@@ -105,23 +117,29 @@ export default {
       };
       // alert(JSON.stringify(user));
       if (user.email && user.password) {
-        if(user.password.length<8){
+        if (user.password.length < 8) {
           this.$alert("Password must be atleast 8 characters long");
           return;
         }
-        if(user.password=="" || user.email=="" || user.Fname=="" || user.Lname==""){
+        if (
+          user.password == "" ||
+          user.email == "" ||
+          user.Fname == "" ||
+          user.Lname == ""
+        ) {
           this.$alert("Please fill all the fields");
           return;
         }
       }
-        //
+      //
       let authUser = JSON.parse(localStorage.getItem("authUser"));
-      
-     
-        //send axios 
-        await vue.axios.post("http://192.168.11.209:8080/auth/signup", user).then((res) => {
+
+      //send axios
+      await vue.axios
+        .post("http://192.168.11.209:8080/auth/signup", user)
+        .then((res) => {
           console.log(res.data.message);
-          if(res.status==201){
+          if (res.status == 201) {
             if (authUser) {
               authUser.push(user);
               localStorage.setItem("authUser", JSON.stringify(authUser));
@@ -134,16 +152,15 @@ export default {
               localStorage.setItem("authUser", JSON.stringify(authUser));
               this.$alert("SuccessFully Signed Up");
               this.$router.push("signin");
-            }  
+            }
           }
-        }).catch((err) => {
+        })
+        .catch((err) => {
           console.log(err.message);
         });
-        // let socket = io("http://192.168.11.209:8080");
-        // socket.emit("signup", user);
-      
-      
-      
+      // let socket = io("http://192.168.11.209:8080");
+      // socket.emit("signup", user);
+
       console.log(authUser);
       // this.form[input] = value
 
@@ -159,7 +176,7 @@ export default {
       this.form.email = "";
       this.form.Fname = "";
       this.form.Lname = "";
-      this.form.password="";
+      this.form.password = "";
       // this.form.food = null;
       // this.form.checked = [];
       window.location.href = "signin";
@@ -180,15 +197,14 @@ export default {
   position: absolute;
   padding: 0;
   /* top: 10%; */
-
 }
-.left-container{
+.left-container {
   position: relative !important;
 }
-.left-container .left-img{
-  z-index: 1 !important; 
+.left-container .left-img {
+  z-index: 1 !important;
   position: absolute;
-  left: 0 ;
+  left: 0;
   opacity: 0.8;
   width: 100%;
 }
@@ -212,16 +228,15 @@ export default {
   /* added */
   /* border: 1px solid gray; */
   border-radius: 5%;
-    /* margin: 0 1%; */
-    box-sizing: border-box;
-    padding: 1%;
-    /* box-shadow: 1px 1px 1px 1px lightgray; */
-
+  /* margin: 0 1%; */
+  box-sizing: border-box;
+  padding: 1%;
+  /* box-shadow: 1px 1px 1px 1px lightgray; */
 }
-::v-deep .right-container label{
+::v-deep .right-container label {
   font-size: small !important;
 }
-::v-deep .right-container small{
+::v-deep .right-container small {
   font-size: x-small !important;
 }
 .right-container h3 {
@@ -231,18 +246,18 @@ export default {
   font-style: oblique;
   /* color:royalblue !important; */
   color: #2c3e50 !important;
-
 }
 .right-container div {
   text-align: start;
 }
 .right-container button {
-  width: 10vw;
+  /* width: 10vw; */
+  width:8vw;
   /* background-color: dodgerblue !important; */
   background-color: #00ade3 !important;
-
+  margin: 2%;
   border: none;
-  margin: 1%;
+  /* margin: 1%; */
   /* background-color: #2a343f; */
 }
 .right-container form {
@@ -264,11 +279,11 @@ export default {
     display: none;
     color: black;
   }
-  .right-container{
+  .right-container {
     height: 98%;
     width: 90%;
-       /* border: 1px solid gray; */
-       border-radius: 5%;
+    /* border: 1px solid gray; */
+    border-radius: 5%;
     /* margin: 0 1%; */
     box-sizing: border-box;
     padding: 1%;

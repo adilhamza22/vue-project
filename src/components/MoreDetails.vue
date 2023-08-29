@@ -1,24 +1,37 @@
 <!-- MODAL MORE DETAILS COMPONENT -->
 <template>
   <div>
-    <b-modal id="modal-1" class="modal responsive more-details-modal" title="Residential Details">
-      <div class="d-flex justify-content-around modal-details" style=" flex-wrap: wrap;">
-        <div class="inner-div-modal card-title card-avatar inner-div-modal-avatar" >
+    <b-modal
+      id="modal-1"
+      class="modal responsive more-details-modal"
+      title="Residential Details"
+    >
+      <div
+        class="d-flex justify-content-around modal-details"
+        style="flex-wrap: wrap"
+      >
+        <div
+          class="inner-div-modal card-title card-avatar inner-div-modal-avatar"
+        >
           <img src="../assets/avatar.jpeg" />
         </div>
 
         <div class="inner-div-modal">
           <div class="my-4 d-flex justify-content-between">
-            <span class="col">City:</span> <span class="col ">{{ data.city }}</span>
+            <span class="col">City:</span>
+            <span class="col">{{ data.city }}</span>
           </div>
           <div class="my-4 d-flex justify-content-between">
-            <span class="col">Zip:</span> <span class="col">{{ data.zipcode }}</span>
+            <span class="col">Zip:</span>
+            <span class="col">{{ data.zipcode }}</span>
           </div>
           <div class="my-4 d-flex justify-content-between">
-            <span class="col">Street:</span> <span class="col">{{ data.street }}</span>
+            <span class="col">Street:</span>
+            <span class="col">{{ data.street }}</span>
           </div>
           <div class="my-4 d-flex justify-content-between">
-            <span class="col">Suite:</span><span class="col"> {{ data.suite }}</span>
+            <span class="col">Suite:</span
+            ><span class="col"> {{ data.suite }}</span>
           </div>
         </div>
       </div>
@@ -36,50 +49,47 @@ export default {
   },
 };
 </script>
-<style >
+<style>
 #modal-1 {
   display: block;
-    width: 55vw;
-    height: 90vh;
-    left: 32%;
-    top: 25%;
+  width: 55vw;
+  height: 90vh;
+  left: 32%;
+  top: 25%;
   overflow-y: auto;
 }
-.inner-div-modal span{
-  font-weight: lighter  !important;
-  font-family: serif  !important;
-    font-size: small  !important;
+.inner-div-modal span {
+  font-weight: lighter !important;
+  font-family: serif !important;
+  font-size: small !important;
 }
 
 #modal-1 div:first-child {
   max-width: 100%;
-
 }
-#modal-1 .close{
+#modal-1 .close {
   display: none !important;
 }
-#modal-1 .btn-secondary{
+#modal-1 .btn-secondary {
   display: none !important;
 }
-#modal-1 .btn-primary{
+#modal-1 .btn-primary {
   background-color: rgb(7, 131, 125) !important;
 }
 /* .modal-details{
   left: 10%;
 } */
 
-
-@media only screen and (max-width:992px){
- 
+@media only screen and (max-width: 992px) {
   #modal-1 div:first-child {
     max-width: 80%;
   }
-  .modal-details{
+  .modal-details {
     position: inherit;
   }
 }
-@media only screen and (max-width:768px){
-  #modal-1{
+@media only screen and (max-width: 768px) {
+  #modal-1 {
     display: block;
     width: 80vw;
     height: 90vh;
@@ -89,9 +99,9 @@ export default {
 
     overflow-y: scroll;
   }
-  .inner-div-modal .card-avatar{
-    width: 100%!important;
-    display: flex !important;;
+  .inner-div-modal .card-avatar {
+    width: 100% !important;
+    display: flex !important;
     justify-content: center;
   }
   /* #modal-1 {
@@ -103,38 +113,37 @@ export default {
   overflow-y: hidden;
 } */
 }
- #modal-1 div:first-child {
-   max-width: 100%;
- }
+#modal-1 div:first-child {
+  max-width: 100%;
+}
 
-@media only screen and ( max-width:425px) {
-  #modal-1{
+@media only screen and (max-width: 425px) {
+  #modal-1 {
     top: 5%;
     height: 92vh;
-
   }
-  .modal-body{
-         padding: 1%!important;
+  .modal-body {
+    padding: 1% !important;
   }
   .modal-footer {
-    padding: 1%!important;
+    padding: 1% !important;
   }
-  .inner-div-modal{
-    width: 100%!important;
+  .inner-div-modal {
+    width: 100% !important;
   }
-  .inner-div-modal div{
-    justify-content: center  !important;;
+  .inner-div-modal div {
+    justify-content: center !important;
   }
   /* .inner-div-modal span{
     padding: 0 5px !important;
     margin: 0 2px!important;
   } */
-  .inner-div-modal-avatar{
+  .inner-div-modal-avatar {
     display: flex !important;
     justify-content: center;
   }
-  .inner-div-modal-avatar img{
-    width: 70%!important;
+  .inner-div-modal-avatar img {
+    width: 70% !important;
   }
 }
 /* .more-details-modal{

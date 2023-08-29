@@ -6,12 +6,23 @@
         <span v-if="connectionError">ConnectionError</span>
 
         <div class="messages-container" id ="messages_container">
-            <div class="sender-msg-container row" v-for="m in messages.filter(item => item.sid == 0)" >  <div class="sender-msg">{{ m.msg }} {{ m.timeStamp }} </div> </div>
-            <div class="bot-msg-container row" v-for="m in messages.filter(item => item.sid == 1)">  <div class="bot-msg"> {{ m.msg }} {{ m.timeStamp }}  </div> </div>
+            <div class="row" v-for="m in messages">
+                
+                <div class="sender-msg-container row">
+                    <div class="sender-msg" v-if=" m.sid==0 ">{{ m.msg }} {{m.timeStamp }} </div>  
+                </div>
+                <div class="bot-msg-container row">
+                    <div class="bot-msg" v-if="m.sid ==1"> {{ m.msg }} {{m.timeStamp }}  </div> 
+    
+                </div>
+
+        </div>
+            <!-- <div class="sender-msg-container row" v-for="m in messages.filter(item => item.sid == 0)" >  <div class="sender-msg">{{ m.msg }} {{ m.timeStamp }} </div> </div>
+            <div class="bot-msg-container row" v-for="m in messages.filter(item => item.sid == 1)">  <div class="bot-msg"> {{ m.msg }} {{ m.timeStamp }}  </div> </div> -->
 
         </div>
         <div class="input-msg-container ">
-            <input v-model="newMessage" type="text" placeholder="Ask Expert?" />
+            <input v-model="newMessage" type="text" placeholder="Ask Expert?" v-on:keyup="enterSend"/>
             <button v-on:click="sendMsg()">Send</button>
         </div>        
         <!-- <h1>Chat X<span class="connection_ready" v-if="connection_ready">Connection ready!</span></h1>
@@ -129,7 +140,12 @@ export default {
             // const messages_div = document.getElementById('messages_container');
             // messages_div.scrollTo({top: messages_div.scrollHeight, behavior: 'smooth'});
             this.newMessage = "";
-        }
+        },
+        enterSend(event){
+            if(event.keyCode == 13){
+                this.sendMsg();
+            }
+        },
     },
     created() {
         console.log("created");
@@ -147,13 +163,14 @@ export default {
         // }
     },
     mounted(){
+        this.messages = JSON.parse(localStorage.getItem("messages"));
         console.log("mounted");
         
 
     },
     beforeDestroy(){
-        this.messages=[];
-        localStorage.setItem("messages", JSON.stringify(this.messages));
+        // this.messages=[];
+        // localStorage.setItem("messages", JSON.stringify(this.messages));
         
     }
 }
@@ -171,7 +188,7 @@ export default {
     width: 50%;
     height: 70%;
     /* left:0; */
-    bottom:10%;
+    bottom:12.5%;
     right: 2%;
     background-image: url("../assets/background.jpg");
     color: white;
@@ -196,7 +213,8 @@ export default {
     /* overflow: scroll; */
     overflow-x: hidden;
     overflow-y: auto;
-    height: 100%;
+    height: 70%;
+    /* height: 100%; */
 
 }
 
@@ -245,7 +263,7 @@ h1 {
     width:100%;
     float: left;
     display: block;
-    /* margin-left: 1%; */
+    margin-left: 1%;    
 
 
 }
@@ -266,7 +284,6 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    
 }
 
 .input-msg-container input {
@@ -275,13 +292,14 @@ h1 {
     /* height: 30px; */
     /* border: 1px solid green; */
     border: 1px solid rgb(31, 105, 83);
+    margin: 1%;
 
     border-radius: 5px;
 }
 
 
 .input-msg-container input::placeholder {
-    padding-left: 2%;
+    padding-left: 3%;
     font-size: small;
     font-family: monospace;
 }
@@ -292,5 +310,6 @@ h1 {
     color: white;
     border-radius: 10px;
     /* margin: 10px; */
+    
     border: none;
 }</style>

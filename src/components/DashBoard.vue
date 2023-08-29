@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NavBarBrand  class="navbar-brand"/>
+    <NavBarBrand class="navbar-brand" />
     <div id="home" class="container mw-100">
       <div class="left-main container">
         <nav class="left-nav">
@@ -17,19 +17,23 @@
             Edit Profile <i class="bi bi-person-gear"></i
           ></router-link>
           <router-link to="/students" class="d-flex justify-content-between">
-            Students <i class="bi bi-mortarboard-fill"></i></router-link>
+            Students <i class="bi bi-mortarboard-fill"></i
+          ></router-link>
           <router-link to="/teachers" class="d-flex justify-content-between">
-            Teachers<i class="bi bi-person-workspace"></i></router-link>
-            <router-link to="applications" class="d-flex justify-content-between">
-            Applications<i class="bi bi-r-square"></i></router-link>
+            Teachers<i class="bi bi-person-workspace"></i
+          ></router-link>
+          <router-link to="applications" class="d-flex justify-content-between">
+            Applications<i class="bi bi-r-square"></i
+          ></router-link>
           <!-- <router-link to="/chat" class="d-flex justify-content-between">
             Chat Support<i class="bi bi-chat"></i></router-link> -->
         </nav>
       </div>
       <div class="right-main container">
-        <router-view v-if="showChat==false"/>
+        <!-- <router-view v-if="showChat == false" /> -->
+        <router-view  />
         <div class="render-chat-container">
-          <ChatSupport v-if="showChat"/>
+          <ChatSupport v-if="showChat" />
         </div>
         <div class="chat-support-toggler" @click="showChatSupport()">
           <i class="bi bi-chat chat-icon"></i>
@@ -39,7 +43,6 @@
   </div>
 </template>
 <script>
-
 import UserProfile from "@/components/UserProfile.vue";
 import NavBarBrand from "@/components/NavBarBrand.vue";
 import ChatSupport from "@/components/ChatSupport.vue";
@@ -56,7 +59,7 @@ export default {
   data() {
     return {
       rightContainerNotOpen: true,
-      showChat:false,
+      showChat: false,
     };
   },
   methods: {
@@ -64,23 +67,22 @@ export default {
       this.rightContainerNotOpen = false;
       console.log(this.rightContainerNotOpen);
     },
-    showChatSupport(){
+    showChatSupport() {
       this.showChat = !this.showChat;
-      if(this.showChat==false){
+      if (this.showChat == false) {
         document.querySelector(".render-chat-container").style.display = "none";
+      } else {
+        document.querySelector(".render-chat-container").style.display =
+          "block";
       }
-      else{
-        document.querySelector(".render-chat-container").style.display = "block";
-
-      }
-
+    },
+  },
+  mounted() {
+    console.log("mounted and logged ", this.$store.state.loggedInUser);
+    if (this.showChat == false) {
+      document.querySelector(".render-chat-container").style.display = "none";
     }
   },
-  mounted(){
-    if(this.showChat==false){
-        document.querySelector(".render-chat-container").style.display = "none";
-      }
-  }
   // beforeCreate() {
   //   alert("beforeCreate parent")
   // },
@@ -96,44 +98,44 @@ export default {
 };
 </script>
 <style scoped>
-.navbar-brand{
+.navbar-brand {
   /* margin-bottom: 5%; */
   /* position: sticky; */
 }
-.left-nav{
+.left-nav {
   position: sticky;
   left: 0;
-  overflow-y:hidden;
+  overflow-y: hidden;
 }
-.chat-icon{
+.chat-icon {
   font-size: 1.75rem;
   font-weight: lighter;
 }
-.render-chat-container{
+.render-chat-container {
   position: absolute;
-  right:0;
+  right: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
 }
-.chat-support-toggler{
+.chat-support-toggler {
   display: flex;
   justify-content: center;
   align-items: center;
-  position:fixed;
-  right:2%;
-  bottom:2%;
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
   border-radius: 5px;
-  background-color: rgb(31, 105, 83,0.9);
+  background-color: rgb(31, 105, 83, 0.9);
   color: white;
-  width:50px;
-  height:50px;
+  width: 50px;
+  height: 50px;
   z-index: 10;
 }
-.chat-support-toggler:hover{
+.chat-support-toggler:hover {
   cursor: pointer;
 }
-nav a{
+nav a {
   text-decoration: none;
 }
 @media only screen and (max-width: 768px) {

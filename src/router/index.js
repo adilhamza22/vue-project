@@ -15,10 +15,6 @@ import RegistrationForm from "@/components/RegistrationForm.vue";
 import UserApplications from "@/components/UserApplications.vue";
 Vue.use(VueRouter);
 
-
-
-
-
 const routes = [
   // {
   //   path:"/applications",
@@ -53,25 +49,16 @@ const routes = [
     path: "/dashboard",
     name: "DashBoard",
     component: DashBoard,
-    beforeEnter: (to, from, next) => {
-      let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-        console.log("loggedInUser from guard", loggedInUser);
-        if(loggedInUser){
-          next();
-        }
-        else{
-          next({name:"signin"});
-        }
-      },
     // beforeEnter: (to, from, next) => {
     //   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    //    if(loggedInUser == "" && to.name =="dashboard"){
-    //      next({name:"signin"});
-    //    }
-    //    else{
+    //     console.log("loggedInUser from guard", loggedInUser);
+    //     if(loggedInUser){
     //       next();
-    //    }
-    // },
+    //     }
+    //     else{
+    //       next({name:"signin"});
+    //     }
+    //   },
 
     children: [
       {
@@ -107,17 +94,14 @@ const routes = [
         component: HelloWorld,
       },
       {
-        path:"/applications",
+        path: "/applications",
         component: UserApplications,
-      }
-      
-      
+      },
     ],
   },
   {
-    path:"/register",
+    path: "/register",
     component: RegistrationForm,
-    
   },
   // {
   //   path: "/chat",
@@ -134,7 +118,7 @@ const router = new VueRouter({
 // router.beforeEach((to,from,next)=>{
 //   let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 //   console.log("loggedInUser",loggedInUser);
-  
+
 //   //if route other than signin and user is not authenticated
 //   if(to.name !="signin"   && loggedInUser == "" ){
 //     next({name:"signin"});
@@ -144,8 +128,5 @@ const router = new VueRouter({
 //   }
 
 // });
-
-
-
 
 export default router;

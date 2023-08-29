@@ -6,7 +6,7 @@
         Loading...
        </b-button>
     </div> -->
-    
+
     <table class="table table-primary user-table">
       <tr v-if="!loading">
         <th>Id</th>
@@ -56,13 +56,12 @@ import Loader from "./Loader.vue";
 
 vue.use(VueAxios, axios);
 export default {
-  
   data() {
     return {
       modalOpen: false,
       modalData: null,
       list: undefined,
-      loading:false,
+      loading: false,
       //   items: [
       //     { age: 40, first_name: "Dickerson", last_name: "Macdonald" },
       //     { age: 21, first_name: "Larsen", last_name: "Shaw" },
@@ -71,29 +70,33 @@ export default {
       //   ],
     };
   },
- 
-  
-  mounted() {
-      // alert("mounted child")
-      this.loading = true;
-      setTimeout(() => {
-        vue.axios.get("https://jsonplaceholder.typicode.com/users").then((res) => {
-        console.log(res.data);
-        this.data = res.data;
-        localStorage.setItem("usersData", JSON.stringify(res.data));
-        this.list = res.data;
-        this.loading = false;
-        });
-      }, 3000);
 
-    
-    
+  mounted() {
+    // alert("mounted child")
+    this.loading = true;
+    setTimeout(() => {
+      vue.axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then((res) => {
+          console.log(res.data);
+          this.data = res.data;
+          localStorage.setItem("usersData", JSON.stringify(res.data));
+          this.list = res.data;
+          this.loading = false;
+        })
+        .catch((err) => {
+          console.log(err.response.status);
+          this.$alert(err.response.status, "Error");
+          this.loading = false;
+          this.$router.push("/students");
+        });
+    }, 3000);
   },
   components: {
     // eslint-disable-next-line vue/no-unused-components
     MoreDetails,
-    Loader
-},
+    Loader,
+  },
   methods: {
     moreDetails(data) {
       this.modalOpen = true;
@@ -118,29 +121,36 @@ export default {
   background-color: #ffffff !important;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
-.user-table thead, tbody, tfoot, tr, td, th {
-    border-color: inherit !important;
-    border-style: solid !important;
-    border-width: 1px !important;
+.user-table thead,
+tbody,
+tfoot,
+tr,
+td,
+th {
+  border-color: inherit !important;
+  border-style: solid !important;
+  border-width: 1px !important;
 }
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   .right-main {
-      width: 90%!important;
+    width: 90% !important;
   }
-  .right-main button{
+  .right-main button {
     font-size: small;
     padding: 5%;
-  };
+  }
 }
-.right-main th,td{
-  padding: 0.25rem!important;
+.right-main th,
+td {
+  padding: 0.25rem !important;
   font-size: small;
 }
-@media only screen and (max-width:425px) {
-  .right-main th,td{
+@media only screen and (max-width: 425px) {
+  .right-main th,
+  td {
     font-size: x-small;
   }
-  .right-main button{
+  .right-main button {
     font-size: x-small;
     padding: 5%;
   }
